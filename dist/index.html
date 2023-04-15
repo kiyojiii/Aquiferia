@@ -1,13 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST</title>
-    <script defer src="./bundle.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title> Homepage </title>
+    <script src="https://kit.fontawesome.com/334c45a40c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../dist/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
-    <h1> TEST </h1>
+    <section class="showcase">
+        <header>
+            <h2 class="logo"></h2>
+            <div class="toggle"></div>
+        </header>
+
+        <video src="../dist/video/dew.mp4" muted loop autoplay> </video>
+
+        <div class="overlay"></div>
+
+        <div class="text">
+            <!-- <h2> Aquiferia </h2> -->
+            <h3> Aquiferia </h3>
+            <p> "Optimize your land's water usage with Aquiferia's precise soil moisture monitoring."</p>
+            <a href="signform.html">Login</a>
+            <a href="signform2.html">Register</a>
+        </div>
+
+        <ul class="social">
+            <li><a href="https://www.facebook.com/Kiyojiii" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <li><a href="https://twitter.com/Clinttoott" target="_blank"><i class="fab fa-twitter"></i></a>
+            <li><a href="https://www.linkedin.com/in/clint-joshua-velasquez-6b2976265/" target="_blank"><i
+                        class="fa-brands fa-linkedin"></i></a>
+        </ul>
+    </section>
+
+    <div class="menu">
+        <ul>
+            <li><a href="index.html"> Home </a></li>
+            <li><a href="signform2.html"> Register </a></li>
+            <li><a href="signform.html"> Login </a></li>
+            <li><a href="#"> # </a></li>
+            <li><a href="#"> # </a></li>
+        </ul>
+    </div>
+
+    <script>
+        const menuToggle = document.querySelector('.toggle')
+        const showcase = document.querySelector('.showcase')
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active')
+            showcase.classList.toggle('active')
+        })
+    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>

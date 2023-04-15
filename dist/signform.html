@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title> Sign-in & Sign-up </title>
+    <link rel="stylesheet" href="../dist/css/signformstyles.css">
+    <script src="https://kit.fontawesome.com/334c45a40c.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+
+</head>
+
+<body>
+
+    <video autoplay muted loop id="myVideo">
+        <source src="../dist/video/greece.mp4" type="video/mp4">
+      </video>
+
+    <div class="container">
+
+        <div class="signin-signup">
+        <div class="form">
+            <!-- <div class="back">
+            <input type="submit" id="" name="" value="" class="btn">
+            </div> -->
+            <div class="sign-in-form">
+                <h2 class="title"> Sign In </h2>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" id="lgemail" name="lgemail" required="required" placeholder="Email">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-key"></i>
+                    <input type="password" id="lgpassword" name="lgpassword" required="required" placeholder="Password">
+                </div>
+                <div class="rlbtn">
+                <input type="submit" id="login" name="login" value="Login" class="btn">
+                </div>
+                <p class="social-text"> Or Sign in with social platform</p>
+                <div class="social media">
+                    <a href="#" id="facebook_btn" class="social-icon">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" id="google_btn"  class="social-icon">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-microsoft"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-yahoo"></i>
+                    </a>
+                </div>
+                <p class="account-text"> Don't Have An Account? <a href="#" id="sign-up-btn2"> Sign Up</a></p>
+            </div>
+        </div>
+
+        <div class="form" id="signup">
+            <div class="sign-up-form">
+                <h2 class="title"> Sign Up </h2>
+                <div class="input-field">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="text" id="suemailadd" name="suemailadd" required="required" placeholder="Email">
+                </div>
+                <div class="input-field">
+                    <i class="fa fa-key"></i>
+                    <input type="password" id="supassword" name="supassword" required="required" placeholder="Password">
+                </div>
+                <div class="rlbtn">
+                <input type="submit" id="register" name="register" value="Sign Up" class="btn">
+                </div>
+                <p class="social-text"> Or Sign in with social platform</p>
+                <div class="social media">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" id="google_btn2" class="social-icon">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-microsoft"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-yahoo"></i>
+                    </a>
+                </div>
+                <p class="account-text"> Already Have An Account? <a href="#" id="sign_in_btn2"> Sign In</a></p>
+            </div>
+        </div>
+        </div>
+        
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3> Already Registed To Aquiferia? </h3>
+                    <p> Already have an account?, To access my website, you'll need to login using an existing account. Please click on the "Sign In" button on the bottom and enter your credentials to access your account.</p>
+                    <button class="btn" id="sign-in-btn"> Sign In </button>
+                </div>
+                <img src="../dist/himg/regbg.jpg" alt="#" class="image">
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3> New To Aquiferia? </h3>
+                    <p> Don't have an account yet?, To access my website, you'll need to register for an account. Creating an account is quick and easy - just click on the "Sign Up" button on the bottom and fill out the form with your email address, and a secure password.</p>
+                    <button class="btn" id="sign-up-btn"> Sign Up </button>
+                </div>
+                <img src="../dist/himg/logbg.png" alt="#" class="image">
+            </div>
+        </div>
+    </div>
+
+    <script src="../dist/js/app.js"></script>
+
+</body>
+</html>
+
+<!-- <script type="module">
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+    import { getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword, 
+            signOut, 
+            GoogleAuthProvider, 
+            signInWithRedirect, 
+            getRedirectResult,
+            signInWithPopup,
+            onAuthStateChanged  } 
+            from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+    
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAvbSa-cklDf2WVqj1dNPyTX5JH-0gZA2Q",
+      authDomain: "itdproject-12c91.firebaseapp.com",
+      projectId: "itdproject-12c91",
+      storageBucket: "itdproject-12c91.appspot.com",
+      messagingSenderId: "158737123945",
+      appId: "1:158737123945:web:69ef810d48d0467799b0f8",
+      measurementId: "G-0QSDWHSQZ8"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const provider = new GoogleAuthProvider();
+    // const provider2 = new FacebookAuthProvider();
+    const auth = getAuth();
+    console.log(app)
+    
+    //Google Sign-In
+    google_btn.addEventListener('click', () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
+    });
+
+    // After redirection, handle the result and redirect to index.html
+    getRedirectResult(auth)
+    .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        console.log(user);
+        (Swal.fire({
+        icon: 'success',
+        title: 'Signed In Successfully',
+        text: 'Redirecting...',
+        }));
+        setTimeout(function () {
+        window.location.href = "start.html"; //will redirect to your blog page (an ex: blog.html)
+        }, 2000); //will call the function after 5 secs.
+        // ...
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(errorMessage);
+    });
+
+    //Google Sign-In
+    google_btn2.addEventListener('click', () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
+    });
+
+    // After redirection, handle the result and redirect to index.html
+    getRedirectResult(auth)
+    .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        console.log(user);
+        (Swal.fire({
+        icon: 'success',
+        title: 'Signed In Successfully',
+        text: 'Redirecting...',
+        }));
+        setTimeout(function () {
+        window.location.href = "start.html"; //will redirect to your blog page (an ex: blog.html)
+        }, 2000); //will call the function after 5 secs.
+        // ...
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(errorMessage);
+    });
+
+    // // Google Sign-In
+    // // Get the Google sign-in button element
+    // const google_btn = document.getElementById('google-btn');
+
+    // // Add a click event listener to the button
+    // google_btn.addEventListener('click', () => {
+    // // Create a new Google authentication provider
+    // const provider = new GoogleAuthProvider();
+
+    // // Sign in with the Google provider
+    // signInWithRedirect(auth, provider);
+    // });
+
+    // // After redirection, handle the result and redirect to index.html
+    // getRedirectResult(auth)
+    // .then((result) => {
+    //     const credential = GoogleAuthProvider.credentialFromResult(result);
+    //     const token = credential.accessToken;
+    //     const user = result.user;
+    //     console.log(user);
+    //     (Swal.fire({
+    //     icon: 'success',
+    //     title: 'Signed In Successfully',
+    //     text: 'Redirecting...',
+    //     }));
+    //     setTimeout(function () {
+    //     window.location.href = "index.html"; //will redirect to your blog page (an ex: blog.html)
+    //     }, 2000); //will call the function after 5 secs.
+    //     // ...
+    // })
+    // .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     const email = error.email;
+    //     const credential = GoogleAuthProvider.credentialFromError(error);
+    //     console.log(errorMessage);
+    // });
+
+    
+    
+    // //Facebook Sign-In
+    // facebook_btn.addEventListener('click', () => {
+    //   signInWithRedirect(auth, provider2);
+    
+    //   getRedirectResult(auth, provider2).then((result) => {
+    //     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    //     const credential = FacebookAuthProvider.credentialFromResult(result);
+    //     const token = credential.accessToken;
+    
+    //     const user = result.user;
+    //     // IdP data available using getAdditionalUserInfo(result)
+    //     // ...
+    //   }).catch((error) => {
+    //     // Handle Errors here.
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     // The email of the user's account used.
+    //     const email = error.customData.email;
+    //     // AuthCredential type that was used.
+    //     const credential = FacebookAuthProvider.credentialFromError(error);
+    //     // ...
+    //   });
+    
+    // });
+
+    //----- New Registration code start	  
+    document.getElementById("register").addEventListener("click", function() {
+        var email =  document.getElementById("suemailadd").value; 
+        var password =  document.getElementById("supassword").value;
+      
+      //For new registration
+      createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        (Swal.fire({
+        icon: 'success',
+        title: 'Registered Successfully',
+        text: 'You Can Now Login, Redirecting...',
+        }));
+        setTimeout(function () {
+        window.location.href = "index.html"; //will redirect to your blog page (an ex: blog.html)
+        }, 2000); //will call the function after 5 secs.
+        // ...
+        })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.log(errorMessage);
+        (Swal.fire({
+        icon: 'error',
+        title: 'An Error Has Occured',
+        text: ''+error,
+        }));;
+        });		  		  
+    });
+    //----- End
+    
+    //----- Login code start	  
+    document.getElementById("login").addEventListener("click", function() {
+      var email =  document.getElementById("lgemail").value;
+      var password = document.getElementById("lgpassword").value;
+    
+      signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        (Swal.fire({
+        icon: 'success',
+        title: 'Logged In Successfully',
+        text: 'You Will Be Redirected Shortly',
+        }));
+        setTimeout(function () {
+        window.location.href = "start.html"; //will redirect to your blog page (an ex: blog.html)
+        }, 3000); //will call the function after 3 secs.
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        (Swal.fire({
+        icon: 'error',
+        title: 'An Error Has Occured',
+        text: ''+error,
+        }));;
+      });		  		  
+    });
+    //----- End
+    
+</script> -->
+
