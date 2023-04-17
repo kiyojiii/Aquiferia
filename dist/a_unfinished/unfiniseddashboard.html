@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="../dist/css/dashboard.css">
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/334c45a40c.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-a" style="color: #fff;"></i></span>
+                    <span class="title"></i> Aquiferia </span>
+                </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="home"></ion-icon></span>
+                        <span class="title"> Dashboard </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="people"></ion-icon></span>
+                        <span class="title"> Customers </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                        <span class="title"> Message </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="help-circle-outline"></ion-icon></span>
+                        <span class="title"> Help </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="settings"></ion-icon></span>
+                        <span class="title"> Settings </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    
+        <!-- main -->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu"></ion-icon>
+            </div>
+            <!-- Search -->
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Search Here">
+                    <ion-icon name="search"></ion-icon>
+                </label>
+            </div>
+            <!-- userImg -->
+            <div class="user">
+                <img src="../dist/himg/user.jpg" height="69px">
+            </div>
+        </div>    
+    </div>
+
+
+    </div>
+
+    <script>
+        // add hovered class in selected list item
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink(){
+            list.forEach((item) => 
+            item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+        list.forEach((item) =>
+        item.addEventListener('mouseover',activeLink));
+    </script>
+</body>
+</html>

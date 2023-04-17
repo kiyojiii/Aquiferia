@@ -129,7 +129,7 @@
 </body>
 </html>
 
-<!-- <script type="module">
+<script type="module">
 
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
@@ -150,13 +150,13 @@
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
-      apiKey: "AIzaSyAvbSa-cklDf2WVqj1dNPyTX5JH-0gZA2Q",
-      authDomain: "itdproject-12c91.firebaseapp.com",
-      projectId: "itdproject-12c91",
-      storageBucket: "itdproject-12c91.appspot.com",
-      messagingSenderId: "158737123945",
-      appId: "1:158737123945:web:69ef810d48d0467799b0f8",
-      measurementId: "G-0QSDWHSQZ8"
+      apiKey: "AIzaSyDOIDgSedybvSSPD2TejDmtdD0SZNoPS7U",
+      authDomain: "aquiferia-f9786.firebaseapp.com",
+      projectId: "aquiferia-f9786",
+      storageBucket: "aquiferia-f9786.appspot.com",
+      messagingSenderId: "236511073621",
+      appId: "1:236511073621:web:2059e210c6ab5ac2e18bdc",
+      measurementId: "G-52S8RPWSMV"
     };
     
     // Initialize Firebase
@@ -229,71 +229,6 @@
         console.log(errorMessage);
     });
 
-    // // Google Sign-In
-    // // Get the Google sign-in button element
-    // const google_btn = document.getElementById('google-btn');
-
-    // // Add a click event listener to the button
-    // google_btn.addEventListener('click', () => {
-    // // Create a new Google authentication provider
-    // const provider = new GoogleAuthProvider();
-
-    // // Sign in with the Google provider
-    // signInWithRedirect(auth, provider);
-    // });
-
-    // // After redirection, handle the result and redirect to index.html
-    // getRedirectResult(auth)
-    // .then((result) => {
-    //     const credential = GoogleAuthProvider.credentialFromResult(result);
-    //     const token = credential.accessToken;
-    //     const user = result.user;
-    //     console.log(user);
-    //     (Swal.fire({
-    //     icon: 'success',
-    //     title: 'Signed In Successfully',
-    //     text: 'Redirecting...',
-    //     }));
-    //     setTimeout(function () {
-    //     window.location.href = "index.html"; //will redirect to your blog page (an ex: blog.html)
-    //     }, 2000); //will call the function after 5 secs.
-    //     // ...
-    // })
-    // .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     const email = error.email;
-    //     const credential = GoogleAuthProvider.credentialFromError(error);
-    //     console.log(errorMessage);
-    // });
-
-    
-    
-    // //Facebook Sign-In
-    // facebook_btn.addEventListener('click', () => {
-    //   signInWithRedirect(auth, provider2);
-    
-    //   getRedirectResult(auth, provider2).then((result) => {
-    //     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    //     const credential = FacebookAuthProvider.credentialFromResult(result);
-    //     const token = credential.accessToken;
-    
-    //     const user = result.user;
-    //     // IdP data available using getAdditionalUserInfo(result)
-    //     // ...
-    //   }).catch((error) => {
-    //     // Handle Errors here.
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // The email of the user's account used.
-    //     const email = error.customData.email;
-    //     // AuthCredential type that was used.
-    //     const credential = FacebookAuthProvider.credentialFromError(error);
-    //     // ...
-    //   });
-    
-    // });
-
     //----- New Registration code start	  
     document.getElementById("register").addEventListener("click", function() {
         var email =  document.getElementById("suemailadd").value; 
@@ -343,7 +278,7 @@
         text: 'You Will Be Redirected Shortly',
         }));
         setTimeout(function () {
-        window.location.href = "start.html"; //will redirect to your blog page (an ex: blog.html)
+        window.location.href = "dashboard.html"; //will redirect to your page
         }, 3000); //will call the function after 3 secs.
         // ...
       })
@@ -360,5 +295,5 @@
     });
     //----- End
     
-</script> -->
+</script>
 

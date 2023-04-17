@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title> Admin Dashboard </title>
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+<script src="https://kit.fontawesome.com/334c45a40c.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery-3.3.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+  
+<!-- Data Tables -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+  
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+<!-- Include DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!----css3---->
+<link rel="stylesheet" href="css/custom.css">
+<!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+      
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">	
+      
+<!--google material icon-->
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+  
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+
+<body>
+<div class="wrapper">
+<div class="body-overlay"></div>
+
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3><img src="../dist/himg/logo.png" height="100px" class="img-fluid"/><span>Aquiferia</span></h3>
+            </div>
+            <ul class="list-unstyled components">
+			<li  class="active">
+                    <a href="dashboard.html" class="dashboard"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
+                </li>
+		
+		      <div class="small-screen navbar-display">
+                <li class="dropdown d-lg-none d-md-block d-xl-none d-sm-block">
+                    <!-- <a href="#homeSubmenu0" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+					<i class="material-icons">notifications</i><span> 4 notification</span></a>
+                    <ul class="collapse list-unstyled menu" id="homeSubmenu0">
+                                    <li>
+                                    <a href="#">You have 5 new messages</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">You're now friend with Mike</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Wish Mary on her birthday!</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">5 warnings in Server Console</a>
+                                    </li>
+                    </ul>
+                </li>
+				
+				<li  class="d-lg-none d-md-block d-xl-none d-sm-block">
+                    <a href="#"><i class="material-icons">apps</i><span>apps</span></a>
+                </li> -->
+				
+				 <li  class="d-lg-none d-md-block d-xl-none d-sm-block">
+                    <a href="#"><i class="material-icons">person</i><span>user</span></a>
+                </li>
+				
+				<li  class="d-lg-none d-md-block d-xl-none d-sm-block">
+                    <a href="#"><i class="material-icons">settings</i><span>setting</span></a>
+                </li>
+				</div>
+                
+                <li class="dropdown">
+                    <a href="#pageSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+					<i class="material-icons">grid_on</i><span>tables</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu6">
+                        <li>
+                            <a href="crudpage.html">Moisture Records</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li>			
+			
+                <!-- <li class="dropdown">
+                    <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+					<i class="material-icons">aspect_ratio</i><span>Layouts</span></a>
+                    <ul class="collapse list-unstyled menu" id="homeSubmenu1">
+                        <li>
+                            <a href="#">Home 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 3</a>
+                        </li>
+                    </ul>
+                </li> -->
+                
+                <!-- <li class="dropdown">
+                    <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+					<i class="material-icons">apps</i><span>widgets</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu2">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li> -->
+				
+				 <li class="dropdown">
+                    <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+					<i class="material-icons">equalizer</i>
+				
+					
+					<span>chart</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu3">
+                        <li>
+                            <a href="chart.html">Chart Set 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+				  <!-- <li class="dropdown">
+                    <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+					<i class="material-icons">extension</i><span>ui element</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu4">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li>
+				
+				<li class="dropdown">
+                    <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+					<i class="material-icons">border_color</i><span>forms</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu5">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li> -->
+               
+			   
+			     <!-- <li class="dropdown">
+                    <a href="#pageSubmenu7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+					<i class="material-icons">content_copy</i><span>Pages</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu7">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li> -->
+<!--                
+               <li class="">
+                    <a href="#"><i class="material-icons">date_range</i><span>copy</span></a>
+                </li>
+				 -->
+				 <li  class="">
+                    <a href="#" id="logout"><i class="material-icons">logout</i><span>Logout</span></a>
+                </li>
+               
+               
+            </ul>
+
+           
+        </nav>
+		
+		
+
+        <!-- Page Content  -->
+        <div id="content">
+		
+		<div class="top-navbar">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="d-xl-block d-lg-block d-md-mone d-none">
+                        <span class="material-icons">arrow_back_ios</span>
+                    </button>
+					
+					<a class="navbar-brand" href="#"> Dashboard </a>
+					
+                    <button class="d-inline-block d-lg-none ml-auto more-button" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="material-icons">more_vert</span>
+                    </button>
+
+                    <div class="collapse navbar-collapse d-lg-block d-xl-block d-sm-none d-md-none d-none" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">   
+                            <!-- <li class="dropdown nav-item active">
+                                <a href="#" class="nav-link" data-toggle="dropdown">
+                                   <span class="material-icons">notifications</span>
+								   <span class="notification">4</span>
+                               </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">#</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">#</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">#</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">#</a>
+                                    </li>
+                                  
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+								<span class="material-icons">apps</span>
+								</a>
+                            </li> -->
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">
+								<span class="material-icons">person</span>
+								</a>
+                            </li>
+                            <li class="">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <i class="material-icons">settings</i><span></span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <a class="dropdown-item" href="#">Account</a>
+                                  <a class="dropdown-item" href="#">Preferences</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="#" id="logout2">Logout</a>
+                                </div>
+                              </li>
+                              
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+	    </div>
+			
+			
+			<div class="main-content">
+			
+			<div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="icon icon-warning">
+                                       <span class="material-icons">equalizer</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><strong>All Records</strong></p>
+                                    <h3 class="card-title"><div id="count">Loading count...</div></h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons text-info">info</i>
+                                        <a href="crudpage.html">See detailed report</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="icon icon-rose">
+                                       <span class="material-icons" style="color: rgb(89, 89, 231);">opacity</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><strong>Average Moisture</strong></p>
+                                    <h3 class="card-title"><div id="moisture">Loading count...</div></h3>
+                                </div>
+
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">trending_up</i> Highest Moisture:
+                                        <p id="moist" class="moisture-level"></p>
+                                    </div>       
+                                    <div class="stats">
+                                        <i class="material-icons">trending_down</i> Lowest Moisture:
+                                        <p id="lowmoist" class="moisture-level"></p>
+                                    </div>                                 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="icon icon-success">
+                                        <span class="material-icons" style="color: yellowgreen;"> thermostat </span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><strong>Average Temp</strong></p>
+                                    <h3 class="card-title"><div id="temperature">Loading count...</div></h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">trending_up</i> Highest Temp:
+                                        <p id="temp" class="temp-level"></p>
+                                    </div>      
+                                    <div class="stats">
+                                        <i class="material-icons">trending_down</i> Lowest Temp:
+                                        <p id="lowtemp" class="temp-level"></p>
+                                    </div>   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="icon icon-info">
+                                    <span class="material-icons">air</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><strong>Average Humidity</strong></p>
+                                    <h3 class="card-title"><div id="humidity">Loading count...</div></h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">trending_up</i> Highest Humidity:
+                                        <p id="highhumid" class="humidity-level"></p>
+                                    </div>      
+                                    <div class="stats">
+                                        <i class="material-icons">trending_down</i> Lowest Humidity:
+                                        <p id="lowhumid" class="humidity-level"></p>
+                                    </div> 
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-lg-7 col-md-12">
+                            <div class="card" style="min-height: 485px">
+                                <div class="card-header card-header-text">
+                                    <h4 class="card-title"> Soil Metric Records </h4>
+                                    <p class="category">A record of all Soil Moisture Levels from Different Plants</p>
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table id="myTable" class="display">
+                                        <thead class="text-primary">
+                                            <th>No. </th>
+                                            <th>Plant Name</th>
+                                            <th>Moisture </th>
+                                            <th>Temperature </th>
+                                            <th>Humidity </th>
+                                        </tr></thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="col-lg-5 col-md-12">
+                            <div class="card" style="min-height: 485px">
+                              <div class="card-header card-header-text">
+                                <h4 class="card-title"><i class="material-icons">update</i>Latest Moisture Records</h4>
+                                <p> Recent Soil Moisture Record Activities </p>
+                              </div>
+                              <div class="card-content">
+                                <div class="streamline" id="moisture-stream">
+                                  <!-- Placeholder item to be replaced by Firestore data -->
+                                  <div class="sl-item">
+                                    <div class="sl-content">
+                                      <small class="text-muted">Loading...</small>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+
+                    </div>
+					
+					
+						
+					<footer class="footer">
+                <div class="container-fluid">
+				  <div class="row">
+				  <div class="col-md-6">
+                    <nav class="d-flex">
+                        <ul class="m-0 p-0">
+                            <li>
+                                <a href="#">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Company
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Portfolio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                   
+                </div>
+				<div class="col-md-6">
+				 <p class="copyright d-flex justify-content-end"> &copy 2023 Design by 
+                        <a href="#"> &nbsp CJV &nbsp </a> Aquiferia
+                    </p>
+				</div>
+				  </div>
+				    </div>
+            </footer>
+					
+					</div>
+					
+				
+
+        </div>
+    </div>
+
+
+
+
+
+
+<!-- firebase js -->
+<script type="module">
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js';
+    import { getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword, 
+            signOut, 
+            GoogleAuthProvider, 
+            signInWithRedirect, 
+            getRedirectResult,
+            signInWithPopup,
+            onAuthStateChanged, } 
+            from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+    import { getFirestore,
+            collection,
+            addDoc,
+            connectFirestoreEmulator,
+            query, 
+            getDocs,
+            getDoc,
+            updateDoc,
+            setDoc,
+            doc,
+            onSnapshot,
+            deleteDoc,
+            orderBy } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
+      
+    // Import the functions you need from the SDKs you need
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDOIDgSedybvSSPD2TejDmtdD0SZNoPS7U",
+      authDomain: "aquiferia-f9786.firebaseapp.com",
+      projectId: "aquiferia-f9786",
+      storageBucket: "aquiferia-f9786.appspot.com",
+      messagingSenderId: "236511073621",
+      appId: "1:236511073621:web:2059e210c6ab5ac2e18bdc",
+      measurementId: "G-52S8RPWSMV"
+    };
+      
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const provider = new GoogleAuthProvider();
+    console.log(app)
+      
+    //Firestore
+    const db = getFirestore(app);
+
+    //DataTables
+    firebase.initializeApp(firebaseConfig);
+    const db2 = firebase.firestore();
+
+    // Record Count
+    const collectionRef = collection(db, 'MoistureRecords');
+      getDocs(collectionRef)
+        .then(snapshot => {
+          const count = snapshot.size;
+          const countEl = document.getElementById('count');
+          countEl.innerText = `${count}`;
+        })
+        .catch(error => console.error(error));
+
+    // Get the Firebase Auth instance
+    const auth = getAuth(app);
+
+// Get the DOM element with the id "moisture"
+const moistureDisplay = document.getElementById("moisture");
+
+// Average Moisture
+db2.collection('MoistureRecords').get().then((querySnapshot) => {
+  let totalMoistureLevel = 0;
+  let numDocuments = 0;
+  querySnapshot.forEach((doc) => {
+    const moistureData = doc.data()['Moisture Level'];
+    if (moistureData) {
+      totalMoistureLevel += parseFloat(moistureData);
+      numDocuments++;
+    }
+  });
+  const averageMoistureLevel = (totalMoistureLevel / numDocuments).toFixed(2);
+  console.log(`Average moisture level: ${averageMoistureLevel}`);
+
+  // Set the innerHTML of the element to the calculated average
+  moistureDisplay.innerHTML = `${averageMoistureLevel}%`;
+}).catch((error) => {
+  console.log(`Error getting documents: ${error}`);
+});
+
+// Get the DOM element with the id "temperature"
+const temperatureDisplay = document.getElementById("temperature");
+
+// Average Temperature
+db2.collection('MoistureRecords').get().then((querySnapshot) => {
+  let totalTemperatureLevel = 0;
+  let numDocuments = 0;
+  querySnapshot.forEach((doc) => {
+    const temperatureData = doc.data()['Temperature Level'];
+    if (temperatureData) {
+      totalTemperatureLevel += parseFloat(temperatureData);
+      numDocuments++;
+    }
+  });
+  const averageTemperatureLevel = (totalTemperatureLevel / numDocuments).toFixed(2);
+  console.log(`Average temperature level: ${averageTemperatureLevel}`);
+
+  // Set the innerHTML of the element to the calculated average
+  temperatureDisplay.innerHTML = `${averageTemperatureLevel}°C`;
+}).catch((error) => {
+  console.log(`Error getting documents: ${error}`);
+});
+
+// Get the DOM element with the id "humidity"
+const humidityDisplay = document.getElementById("humidity");
+
+// Average Humidity
+db2.collection('MoistureRecords').get().then((querySnapshot) => {
+  let totalHumidityLevel = 0;
+  let numDocuments = 0;
+  querySnapshot.forEach((doc) => {
+    const humidityData = doc.data()['Humidity Level'];
+    if (humidityData) {
+      totalHumidityLevel += parseFloat(humidityData);
+      numDocuments++;
+    }
+  });
+  const averageHumidityLevel = (totalHumidityLevel / numDocuments).toFixed(2);
+  console.log(`Average humidity level: ${averageHumidityLevel}`);
+
+  // Set the innerHTML of the element to the calculated average
+  humidityDisplay.innerHTML = `${averageHumidityLevel}%`;
+}).catch((error) => {
+  console.log(`Error getting documents: ${error}`);
+});
+
+// <-- Add Data to DataTables -->
+
+// Get the data from Firestore and add it to the DataTable
+db2.collection("MoistureRecords")
+  .orderBy("DateTime", "desc")
+  .get()
+  .then((querySnapshot) => {
+    let counter = 1; // initialize counter variable
+    const table = $('#myTable').DataTable(); // cache DataTable instance
+    table.clear(); // clear existing data in the table
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      table.row.add([
+        counter++, // increment counter variable and include as first column
+        data["Plant Name"],
+        data["Moisture Level"],
+        data["Temperature Level"],
+        data["Humidity Level"],
+      ]);
+    });
+    table.draw(); // refresh the table with new data
+  })
+  .catch((error) => {
+    console.log(`Error getting documents: ${error}`);
+  });
+
+
+// Get a reference to the HTML element where the data will be displayed
+const moistureStream = document.getElementById('moisture-stream');
+
+// Listen for changes to the collection and update the HTML
+db2.collection("MoistureRecords")
+  .orderBy('DateTime', 'desc')
+  .limit(4)
+  .onSnapshot(snapshot => {
+    console.log('Snapshot received:', snapshot);
+    if (snapshot.empty) {
+      console.log('Snapshot is empty');
+      return;
+    }
+
+    // Define the color scale based on moisture levels
+    const moistureColorScale = d3.scaleLinear()
+      .domain([0, 100])
+      .range(["red", "green"]);
+
+    // Define the color scale based on temperature levels
+    const temperatureColorScale = d3.scaleLinear()
+      .domain([0, 100])
+      .range(["green", "red"]);
+
+    // Define the color scale based on humidity levels
+    const humidityColorScale = d3.scaleLinear()
+    .domain([0, 100])
+    .range(["green", "red"]);
+
+    // Build the HTML for all the items
+    let itemsHtml = '';
+    snapshot.forEach(doc => {
+      const moistureData = doc.data();
+      console.log('Moisture data:', moistureData);
+
+      const moistureLevel = parseInt(moistureData['Moisture Level']);
+      const moistureColor = moistureColorScale(moistureLevel);
+
+      const temperatureLevel = parseInt(moistureData['Temperature Level']);
+      const temperatureColor = temperatureColorScale(temperatureLevel);
+
+      const humidityLevel = parseInt(moistureData['Temperature Level']);
+      const humidityColor = temperatureColorScale(humidityLevel);
+
+      let itemClass = 'sl-content';
+      if ((moistureLevel) <= 50) {
+        itemClass = 'sl-danger';
+      } else if (moistureLevel > 50 && moistureLevel <= 100) {
+        itemClass = 'sl-primary';
+      }
+
+      const itemHtml = `
+        <div class="sl-item ${itemClass}">
+          <div class="sl-content">
+            <medium class="text-muted"> <strong> ${moistureData.DateTime.toDate().toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })} </strong> </medium>
+            <p><strong>Plant Name: </strong> ${moistureData['Plant Name']} <br> <strong>
+            Moisture level: <span style="color:${moistureColor}">${moistureData['Moisture Level']} </strong> </span>
+            <br> <strong> Temperature Level: <span style="color:${temperatureColor}">${moistureData['Temperature Level']} </strong> <br> 
+            <strong> Humidity Level: <span style="color:${humidityColor}">${moistureData['Humidity Level']} </strong> </span>
+              </p>
+          </div>
+        </div>
+      `;
+
+      itemsHtml += itemHtml;
+    });
+
+    // Replace the placeholder item with the new items
+    moistureStream.innerHTML = itemsHtml;
+  }, error => {
+    console.log('Error:', error);
+});
+
+// Highest Moisture in 10 Records
+// Get the DOM element with the id "moist"
+const moistDisplay = document.getElementById("moist");
+
+db2.collection("MoistureRecords")
+  .orderBy("DateTime", "desc")
+  .limit(10)
+  .get()
+  .then((querySnapshot) => {
+    let highestMoistureLevel = -Infinity;
+    querySnapshot.forEach((doc) => {
+      const moistureData = parseFloat(doc.data()["Moisture Level"]);
+      if (moistureData > highestMoistureLevel) {
+        highestMoistureLevel = moistureData;
+      }
+    });
+    moistDisplay.innerHTML = `${highestMoistureLevel}%`;
+  })
+  .catch((error) => {
+    console.log(`Error getting documents: ${error}`);
+  });
+
+// Lowest Moisture in 10 Records
+// Get the DOM element with the id "lowmoist"
+const lowMoistDisplay = document.getElementById("lowmoist");
+
+db2.collection("MoistureRecords")
+  .orderBy("DateTime", "desc")
+  .limit(10)
+  .get()
+  .then((querySnapshot) => {
+    let lowestMoistureLevel = Infinity;
+    querySnapshot.forEach((doc) => {
+      const moistureData = parseFloat(doc.data()["Moisture Level"]);
+      if (moistureData < lowestMoistureLevel) {
+        lowestMoistureLevel = moistureData;
+      }
+    });
+    lowMoistDisplay.innerHTML = `${lowestMoistureLevel}%`;
+  })
+  .catch((error) => {
+    console.log(`Error getting documents: ${error}`);
+});
+
+
+// Highest Temperature in 10 Records
+// Get the DOM element with the id "temp"
+const tempDisplay = document.getElementById("temp");
+
+db2.collection("MoistureRecords")
+  .orderBy("DateTime", "desc")
+  .limit(10)
+  .get()
+  .then((querySnapshot) => {
+    let highestTemperatureLevel = -Infinity;
+    querySnapshot.forEach((doc) => {
+      const temperatureData = parseFloat(doc.data()["Temperature Level"]);
+      if (temperatureData > highestTemperatureLevel) {
+        highestTemperatureLevel = temperatureData;
+      }
+    });
+    tempDisplay.innerHTML = `${highestTemperatureLevel.toFixed(2)}&deg;C`;
+  })
+  .catch((error) => {
+    console.log(`Error getting documents: ${error}`);
+});
+
+// Lowest Temperature in 10 Records
+// Get the DOM element with the id "lowtemp"
+const lowTempDisplay = document.getElementById("lowtemp");
+
+db2.collection("MoistureRecords")
+  .orderBy("DateTime", "desc")
+  .limit(10)
+  .get()
+  .then((querySnapshot) => {
+    let lowestTemperatureLevel = Infinity;
+    querySnapshot.forEach((doc) => {
+      const temperatureData = parseFloat(doc.data()["Temperature Level"]);
+      if (temperatureData < lowestTemperatureLevel) {
+        lowestTemperatureLevel = temperatureData;
+      }
+    });
+    lowTempDisplay.innerHTML = `${lowestTemperatureLevel.toFixed(2)}&deg;C`;
+  })
+  .catch((error) => {
+    console.log(`Error getting documents: ${error}`);
+});
+
+
+// Highest Humidity Level in 10 Records
+// Get the DOM element with the ID "highhumid"
+const highHumidDisplay = document.getElementById("highhumid");
+
+db2.collection("MoistureRecords")
+  .orderBy("DateTime", "desc")
+  .limit(10)
+  .get()
+  .then((querySnapshot) => {
+    let highestHumidityLevel = -Infinity;
+    querySnapshot.forEach((doc) => {
+      const humidityData = parseFloat(doc.data()["Humidity Level"]);
+      if (humidityData > highestHumidityLevel) {
+        highestHumidityLevel = humidityData;
+      }
+    });
+    highHumidDisplay.innerHTML = `${highestHumidityLevel}%`;
+  })
+  .catch((error) => {
+    console.log(`Error getting documents: ${error}`);
+});
+
+// Lowest Humidity Level in 10 Records
+// Get the DOM element with the ID "lowhumid"
+const lowHumidDisplay = document.getElementById("lowhumid");
+
+db2.collection("MoistureRecords")
+  .orderBy("DateTime", "desc")
+  .limit(10)
+  .get()
+  .then((querySnapshot) => {
+    let lowestHumidityLevel = Infinity;
+    querySnapshot.forEach((doc) => {
+      const humidityData = parseFloat(doc.data()["Humidity Level"]);
+      if (humidityData < lowestHumidityLevel) {
+        lowestHumidityLevel = humidityData;
+      }
+    });
+    lowHumidDisplay.innerHTML = `${lowestHumidityLevel}%`;
+  })
+  .catch((error) => {
+    console.log(`Error getting documents: ${error}`);
+});
+
+//----- Logout code start	  
+	document.getElementById("logout").addEventListener("click", function() {
+		signOut(auth).then(() => {
+		// Sign-out successful.
+		console.log('Sign-out successful.');
+		(Swal.fire({
+		icon: 'success',
+		title: 'Logged Out Successfully',
+		}));
+		setTimeout(function () {
+		window.location.href = "index.html"; //will redirect to your blog page (an ex: blog.html)
+		}, 2000);
+		}).catch((error) => {
+		// An error happened.
+		console.log('An error happened.');
+		(Swal.fire({
+		icon: 'error',
+		title: 'An Error Has Occured',
+		text: ''+error,
+		}));;
+		});
+	});
+
+// // Check if the user is authenticated on the "start.html" page
+// auth.onAuthStateChanged((user) => {
+//   if (user) {
+//     // User is authenticated
+//     console.log(user);
+//     // Retrieve the user's authentication session from local storage
+//     const storedUser = JSON.parse(localStorage.getItem('user'));
+//     if (storedUser && user.uid === storedUser.uid) {
+//       // Authentication session is valid, continue with the page's logic
+//       // ...
+//     } else {
+//       // Authentication session is invalid, redirect to the login page
+//       window.location.href = "signform.html";
+//     }
+//   } else {
+//     // User is not authenticated, redirect to the login page
+//     window.location.href = "signform.html";
+//   }
+// });
+// //----- End
+
+
+</script>
+  
+<!-- Optional JavaScript -->
+<script type="text/javascript">
+  $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+				$('#content').toggleClass('active');
+            });
+			
+			 $('.more-button,.body-overlay').on('click', function () {
+                $('#sidebar,.body-overlay').toggleClass('show-nav');
+            });
+			
+        });
+
+</script>
+
+<!-- Data Table Show Entries -->
+<script>
+    $('#myTable').dataTable( {
+    "lengthMenu": [ [10, 15, 50, -1], [10, 15, 50, "All"] ]
+  } );
+  </script>
+
+</body>
+  
+</html>
+
+

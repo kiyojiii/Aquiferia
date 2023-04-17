@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width, intial-scale=1.0">
+  <title> CRUD Page </title>
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <script src="https://kit.fontawesome.com/334c45a40c.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  
+  <!-- Select2 CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
+
+  <!-- Select2 JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="crudpage.css" />
+    
+</head>
+<body>
+
+  <div class="container mt-5">
+    <h1 class="main row justify-content-center">CRUD APPLICATION</h1>
+    <h1>Firebase Authenticated User Count</h1>
+    <p>Number of authenticated users: <span id="user-count"></span></p>
+    <div class="col-12 mt-5">
+      <div class="row mb-3">
+        <div class="col-auto">
+          <button id="add-btn" type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#add-modal">
+            <i class="fa-solid fa-square-plus"></i> Add Data
+          </button>
+        </div>
+      </div>
+      <table class="table table-striped" id="myTable">
+        <thead>
+          <tr class="table-primary">
+            <th scope="col">No.</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Favourate Character</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <tr>
+            <!-- AUTOMATIC -->
+          </tr>
+        </tbody>
+      </table>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center" id="pagination">
+          <!-- PAGINATION BUTTONS WILL BE ADDED HERE -->
+        </ul>
+      </nav>
+    </div>
+  </div>
+  
+<!-- Add Modal -->
+<div id="add-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Data</h5>
+        <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="FirstName" class="form-label" required>First Name:</label>
+            <input type="text" class="form-control" id="FirstName" required>
+          </div>
+          <div class="mb-3">
+            <label for="LastName" class="form-label" required>Last Name:</label>
+            <input type="text" class="form-control" id="LastName" required>
+          </div>
+          <div class="mb-3">
+            <label for="FavChar" class="form-label">Favourite Character:</label>
+            <select class="form-select" id="FavChar" size="3" style="overflow-y: auto;">
+                <option value="Aether" data-img-src="charimg/aether.png"> Aether </option>
+                <option value="Albedo" data-img-src="charimg/albedo.gif">Albedo</option>
+                <option value="Alhaitham" data-img-src="charimg/alhaitham.png">Alhaitham</option>
+                <option value="Aloy" data-img-src="charimg/aloy.gif">Aloy</option>
+                <option value="Amber" data-img-src="charimg/amber.gif">Amber</option>
+                <option value="Kamisato Ayaka" data-img-src="charimg/ayaka.png">Ayaka</option>
+                <option value="Kamisato Ayato" data-img-src="charimg/ayato.png">Ayato</option>
+                <option value="Barbara" data-img-src="charimg/barbara.gif">Barbara</option>
+                <option value="Beidou" data-img-src="charimg/beidou.png">Beidou</option>
+                <option value="Bennett" data-img-src="charimg/bennett.gif">Bennett</option>
+                <option value="Candace" data-img-src="charimg/candace.png">Candace</option>
+                <option value="Chongyun" data-img-src="charimg/chongyun.gif">Chongyun</option>
+                <option value="Collei" data-img-src="charimg/collei.png">Collei</option>
+                <option value="Cyno" data-img-src="charimg/cyno.png">Cyno</option>
+                <option value="Dainsleif" data-img-src="charimg/dainsleif.gif">Dainsleif</option>
+                <option value="Dehya" data-img-src="charimg/dehya.gif">Dehya</option>
+                <option value="Diluc" data-img-src="charimg/diluc.gif">Diluc</option>
+                <option value="Diona" data-img-src="charimg/diona.gif">Diona</option>
+                <option value="Eula" data-img-src="charimg/eula.gif">Eula</option>
+                <option value="Faruzan" data-img-src="charimg/faruzan.png">Faruzan</option>
+                <option value="Fischl" data-img-src="charimg/fischl.gif">Fischl</option>
+                <option value="Ganyu" data-img-src="charimg/ganyu.gif">Ganyu</option>
+                <option value="Gorou" data-img-src="charimg/gorou.gif">Gorou</option>
+                <option value="Shikanoin Heizou" data-img-src="charimg/heizou.png">Heizou</option>
+                <option value="Hu Tao" data-img-src="charimg/hutao.gif">Hu Tao</option>
+                <option value="Arattaki Itto" data-img-src="charimg/itto.gif">Itto</option>
+                <option value="Jean" data-img-src="charimg/jean.png">Jean</option>
+                <option value="Kaeya" data-img-src="charimg/kaeya.gif">Kaeya</option>
+                <option value="Kaedahara Kazuha" data-img-src="charimg/kazuha.gif">Kazuha</option>
+                <option value="Keqing" data-img-src="charimg/keqing.gif">Keqing</option>
+                <option value="Klee" data-img-src="charimg/klee.png">Klee</option>
+                <option value="Kokomi" data-img-src="charimg/kokomi.gif">Kokomi</option>
+                <option value="Kuki Shinobu" data-img-src="charimg/kuki.png">Kuki</option>
+                <option value="Layla" data-img-src="charimg/layla.png">Layla</option>
+                <option value="Lisa" data-img-src="charimg/lisa.png">Lisa</option>
+                <option value="Lumine" data-img-src="charimg/lumine.gif">Lumine</option>
+                <option value="Mika" data-img-src="charimg/mika.png">Mika</option>
+                <option value="Mona" data-img-src="charimg/mona.gif">Mona</option>
+                <option value="Nahida" data-img-src="charimg/nahida.png">Nahida</option>
+                <option value="Nilou" data-img-src="charimg/nilou.png">Nilou</option>
+                <option value="Ningguang" data-img-src="charimg/ningguang.gif">Ningguang</option>
+                <option value="Noelle" data-img-src="charimg/noelle.gif">Noelle</option>
+                <option value="Paimon" data-img-src="charimg/paimon.gif">Paimon</option>
+                <option value="Qiqi" data-img-src="charimg/qiqi.gif">Qiqi</option>
+                <option value="Raiden Shogun" data-img-src="charimg/ei.png">Raiden Shogun</option>
+                <option value="Razor" data-img-src="charimg/razor.gif">Razor</option>
+                <option value="Rosaria" data-img-src="charimg/rosaria.png">Rosaria</option>
+                <option value="Kujou Sara" data-img-src="charimg/sara.png">Sara</option>
+                <option value="Sayu" data-img-src="charimg/sayu.png">Sayu</option>
+                <option value="Shenhe" data-img-src="charimg/shenhe.png">Shenhe</option>
+                <option value="Sucrose" data-img-src="charimg/sucrose.gif">Sucrose</option>
+                <option value="Thoma" data-img-src="charimg/thoma.gif">Thoma</option>
+                <option value="Tighnari" data-img-src="charimg/tighnari.png">Tighnari</option>
+                <option value="Tartaglia" data-img-src="charimg/childe.gif">Tartaglia</option>
+                <option value="Venti" data-img-src="charimg/venti.gif">Venti</option>
+                <option value="Wanderer" data-img-src="charimg/scaramouche.gif">Wanderer</option>
+                <option value="Xiangling" data-img-src="charimg/xiangling.png">Xiangling</option>
+                <option value="Xiao" data-img-src="charimg/xiao.gif">Xiao</option>
+                <option value="Xingqiu" data-img-src="charimg/xinqui.gif">Xingqiu</option>
+                <option value="Xinyan" data-img-src="charimg/xinyan.gif">Xinyan</option>
+                <option value="Yae Miko" data-img-src="charimg/yae.gif">Yae Miko</option>
+                <option value="Yanfei" data-img-src="charimg/yanfei.gif">Yanfei</option>
+                <option value="Yaoyao" data-img-src="charimg/yaoyao.png">Yaoyao</option>
+                <option value="Yelan" data-img-src="charimg/yelan.png">Yelan</option>
+                <option value="Yoimiya" data-img-src="charimg/yoimiya.png">Yoimiya</option>
+                <option value="Yunjin" data-img-src="charimg/yunjin.gif">Yunjin</option>
+                <option value="Zhongli" data-img-src="charimg/zhongli.gif">Zhongli</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <img id="charImg" src="" alt="Selected character image">
+            <!-- add an empty image tag with an ID for the selected character image -->
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="add-button">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const favCharSelect = document.getElementById("FavChar");
+  const charImg = document.getElementById("charImg");
+  
+  favCharSelect.addEventListener("change", (event) => {
+    const selectedOption = event.target.selectedOptions[0];
+    const imgSrc = selectedOption.getAttribute("data-img-src");
+    charImg.src = imgSrc;
+    // set the src attribute of the image to the value of data-img-src of the selected option
+  });
+</script>
+
+  
+  <!-- Edit Modal -->
+<div id="edit-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="edit-close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="Fname-input" class="form-label">First Name:</label>
+            <input type="text" class="form-control" id="Fname-input">
+            </div>
+            <div class="mb-3">
+            <label for="Lname-input" class="form-label">Last Name:</label>
+            <input type="text" class="form-control" id="Lname-input">
+            </div>
+            <div class="mb-3">
+              <label for="FavChar" class="form-label">Favourite Character:</label>
+              <select class="form-select" id="Favchar-input" size="5" style="overflow-y: auto;">
+                  <option value="Albedo">Albedo</option>
+                  <option value="Alhaitham">Alhaitham</option>
+                  <option value="Aloy">Aloy</option>
+                  <option value="Amber">Amber</option>
+                  <option value="Kamisato Ayaka">Ayaka</option>
+                  <option value="Kamisato Ayato">Ayato</option>
+                  <option value="Barbara">Barbara</option>
+                  <option value="Beidou">Beidou</option>
+                  <option value="Bennett">Bennett</option>
+                  <option value="Candace">Candace</option>
+                  <option value="Chongyun">Chongyun</option>
+                  <option value="Collei">Collei</option>
+                  <option value="Cyno">Cyno</option>
+                  <option value="Dehya">Dehya</option>
+                  <option value="Diluc">Diluc</option>
+                  <option value="Diona">Diona</option>
+                  <option value="Eula">Eula</option>
+                  <option value="Faruzan">Faruzan</option>
+                  <option value="Fischl">Fischl</option>
+                  <option value="Ganyu">Ganyu</option>
+                  <option value="Gorou">Gorou</option>
+                  <option value="Heizou">Heizou</option>
+                  <option value="Hu Tao">Hu Tao</option>
+                  <option value="Itto">Itto</option>
+                  <option value="Jean">Jean</option>
+                  <option value="Kaeya">Kaeya</option>
+                  <option value="Kazuha">Kazuha</option>
+                  <option value="Keqing">Keqing</option>
+                  <option value="Klee">Klee</option>
+                  <option value="Kokomi">Kokomi</option>
+                  <option value="Kuki Shinobu">Kuki</option>
+                  <option value="Layla">Layla</option>
+                  <option value="Lisa">Lisa</option>
+                  <option value="Mona">Mona</option>
+                  <option value="Nahida">Nahida</option>
+                  <option value="Nilou">Nilou</option>
+                  <option value="Ningguang">Ningguang</option>
+                  <option value="Noelle">Noelle</option>
+                  <option value="Qiqi">Qiqi</option>
+                  <option value="Raiden Shogun">Raiden Shogun</option>
+                  <option value="Razor">Razor</option>
+                  <option value="Rosaria">Rosaria</option>
+                  <option value="Sara">Sara</option>
+                  <option value="Sayu">Sayu</option>
+                  <option value="Shenhe">Shenhe</option>
+                  <option value="Sucrose">Sucrose</option>
+                  <option value="Thoma">Thoma</option>
+                  <option value="Tighnari">Tighnari</option>
+                  <option value="Tartaglia">Tartaglia</option>
+                  <option value="Venti">Venti</option>
+                  <option value="Wanderer">Wanderer</option>
+                  <option value="Xiangling">Xiangling</option>
+                  <option value="Xiao">Xiao</option>
+                  <option value="Xingqiu">Xingqiu</option>
+                  <option value="Xinyan">Xinyan</option>
+                  <option value="Yae Miko">Yae Miko</option>
+                  <option value="Yanfei">Yanfei</option>
+                  <option value="Yaoyao">Yaoyao</option>
+                  <option value="Yelan">Yelan</option>
+                  <option value="Yoimiya">Yoimiya</option>
+                  <option value="Yunjin">Yunjin</option>
+                  <option value="Zhongli">Zhongli</option>
+              </select>
+            </div>
+          </form>
+      </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="edit-close-button">Close</button>
+            <button type="button" class="btn btn-primary" id="update-button">Save changes</button>
+        </div>
+    </div> 
+  </div>
+</div>
+  
+
+
+
+
+<!-- firebase js -->
+  <script type="module">
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js';
+    import { getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword, 
+            signOut, 
+            GoogleAuthProvider, 
+            signInWithRedirect, 
+            getRedirectResult,
+            signInWithPopup,
+            onAuthStateChanged,} 
+            from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+    import { getFirestore,
+            collection,
+            addDoc,
+            connectFirestoreEmulator,
+            query, 
+            getDocs,
+            getDoc,
+            updateDoc,
+            setDoc,
+            doc,
+            onSnapshot,
+            deleteDoc,
+            orderBy } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
+      
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+      
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+    apiKey: "AIzaSyAvbSa-cklDf2WVqj1dNPyTX5JH-0gZA2Q",
+    authDomain: "itdproject-12c91.firebaseapp.com",
+    projectId: "itdproject-12c91",
+    storageBucket: "itdproject-12c91.appspot.com",
+    messagingSenderId: "158737123945",
+    appId: "1:158737123945:web:69ef810d48d0467799b0f8",
+    measurementId: "G-0QSDWHSQZ8"
+    };
+      
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const provider = new GoogleAuthProvider();
+    // const provider2 = new FacebookAuthProvider();
+    // const auth = getAuth();
+    console.log(app)
+      
+    //Firestore
+    const db = getFirestore(app);
+      
+    firebase.initializeApp(firebaseConfig);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        firebase.auth().listUsers().then((userRecords) => {
+          document.getElementById("user-count").innerHTML = userRecords.length;
+        });
+      } else {
+        document.getElementById("user-count").innerHTML = 0;
+      }
+    });
+
+// <----- ADD MODAL -----> 
+
+// Get the add modal element from the DOM
+const addModal = document.getElementById("add-modal");
+
+// Get the input fields and buttons from the add modal
+const addFnameInput = addModal.querySelector("#FirstName");
+const addLnameInput = addModal.querySelector("#LastName");
+const addFavcharInput = addModal.querySelector("#FavChar");
+const addButton = addModal.querySelector("#add-button");
+const cancelButton = addModal.querySelector("#cancel-button");
+
+// Add event listener to the add button
+addButton.addEventListener("click", () => {
+  const FirstName = addFnameInput.value.trim();
+  const LastName = addLnameInput.value.trim();
+  const FavChar = addFavcharInput.value.trim();
+  
+  // Check if any of the input fields are blank
+  if (!FirstName || !LastName || !FavChar) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Please Fill Out All The Fields"
+    });
+    return;
+  }
+
+  // Add the data to Firestore
+  addDoc(collection(db, "FavourateCharacters"), {
+    FirstName: FirstName,
+    LastName: LastName,
+    FavChar: FavChar
+  })
+    .then((docRef) => {
+    console.log("Document written with ID: ", docRef.id);
+    })
+    .catch((error) => {
+    console.error("Error adding document: ", error);
+  });
+
+  // Reset the input fields
+  addFnameInput.value = "";
+  addLnameInput.value = "";
+  addFavcharInput.value = "";
+
+  function hideAddModal() {
+    const addModal = new bootstrap.Modal(document.querySelector("add-modal"));
+    const modalBackdrop = document.querySelector('.modal-backdrop');
+
+    // Hide the modal
+    addModal.hide();
+
+    // Remove the backdrop
+    modalBackdrop.parentNode.removeChild(modalBackdrop);
+  }
+
+  // Show a success message
+  Swal.fire({
+    icon: "success",
+    title: "Data Added Successfully",
+  });
+});
+
+// Add event listener to the add modal to reset the input fields
+addModal.addEventListener("hidden.bs.modal", () => {
+  addFnameInput.value = "";
+  addLnameInput.value = "";
+  addFavcharInput.value = "";
+});
+
+// <----- TABLE PART EDIT AND DELETE BUTTON ----->
+
+// Get the table element from the DOM
+const table = document.getElementById("myTable");
+
+// Get the tbody element from the DOM
+const tbody = document.createElement("tbody");
+table.appendChild(tbody);
+
+// <----- EDIT PART ----->
+
+// Success Update
+function displaySuccessAlert() {
+  Swal.fire('Success', 'Record updated successfully!', 'success');
+}
+
+// Create a query for the users collection
+const usersRef = collection(db, "FavourateCharacters");
+
+// Query the collection in descending order
+const queryDesc = query(usersRef, orderBy("FirstName", "asc"));
+
+// Listen for new data in real-time
+onSnapshot(queryDesc, (querySnapshot) => {
+  // Clear existing data from the table
+  tbody.innerHTML = "";
+
+  // Add new data to the table
+  let index = 0;
+  querySnapshot.forEach((queryDoc) => {
+    index++;
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${index}</td>
+      <td>${queryDoc.data().FirstName}</td>
+      <td>${queryDoc.data().LastName}</td>
+      <td>${queryDoc.data().FavChar}</td>
+      <td>
+        <button type="button" class="btn btn-warning btn-sm edit" data-id="${queryDoc.id}-edit" data-firstname="${queryDoc.data().FirstName}" data-lastname="${queryDoc.data().LastName}" data-favchar="${queryDoc.data().FavChar}">Edit</button>
+        <button type="button" class="btn btn-danger btn-sm delete" data-id="${queryDoc.id}-delete">Delete</button>
+      </td>
+    `;
+    tbody.appendChild(row);
+  });
+
+  // Add a click event listener to the delete button to delete the document from Firestore
+  const deleteButtons = document.querySelectorAll('.delete');
+  deleteButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const documentId = button.getAttribute('data-id').split('-')[0];
+      deleteDocument(documentId);
+    });
+  });
+
+  // Add a click event listener to the edit button to open the edit modal and fill it with the current data
+  const editButtons = document.querySelectorAll('.edit');
+  editButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const documentId = button.getAttribute('data-id').split('-')[0];
+      const firstName = button.getAttribute('data-firstname');
+      const lastName = button.getAttribute('data-lastname');
+      const favChar = button.getAttribute('data-favchar');
+
+      // Fill the input fields with the current data
+      document.getElementById('Fname-input').value = firstName;
+      document.getElementById('Lname-input').value = lastName;
+      document.getElementById('Favchar-input').value = favChar;
+
+      // Set the current document id
+      document.getElementById('update-button').setAttribute('data-id', documentId);
+
+      // Open the edit modal
+      const modal = document.getElementById('edit-modal');
+      modal.classList.add('show');
+      modal.style.display = 'block';
+
+      const editCloseButton = document.getElementById('edit-close');
+      const editCloseButton2 = document.getElementById('edit-close-button');
+      const backdrop = document.createElement('div');
+      backdrop.classList.add('modal-backdrop', 'fade', 'show');
+      document.body.appendChild(backdrop);
+
+      editCloseButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+        backdrop.remove();
+      });
+
+      editCloseButton2.addEventListener('click', () => {
+        modal.style.display = 'none';
+        backdrop.remove();
+      });
+    });
+  });
+
+  // Add a click event listener to the update button to update the document in Firestore with the new data
+  document.getElementById('update-button').addEventListener('click', async () => {
+    try {
+      const firstName = document.getElementById('Fname-input').value;
+      const lastName = document.getElementById('Lname-input').value;
+      const favChar = document.getElementById('Favchar-input').value;
+      const documentId = document.getElementById('update-button').getAttribute('data-id');
+
+  // Catch Error  
+  // Check if any of the input fields are blank
+  if (!firstName || !lastName || !favChar) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Please Fill Out All The Fields"
+    });
+    return;
+  }
+
+      console.log('Update button clicked');
+      await updateDoc(doc(db, "FavourateCharacters", documentId), {
+      FirstName: firstName,
+      LastName: lastName,
+      FavChar: favChar
+      });
+
+      // Hide The Modal After Update
+      const modal = document.getElementById('edit-modal');
+      modal.style.display = 'none';
+      const backdrop = document.querySelector('.modal-backdrop');
+      backdrop.remove();
+
+      // Display success alert
+      displaySuccessAlert();
+
+      } catch (error) {
+      console.error(error);
+      }
+      });
+      
+});
+
+
+// <----- DELETE FUNCTION ----->
+
+// Function to delete a document from Firestore
+const deleteDocument = async (documentId) => {
+  const result = await Swal.fire({
+    title: "Are you sure you want to delete this document?",
+    text: "This action cannot be undone.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#dc3545",
+    confirmButtonText: "Yes, delete it",
+    cancelButtonText: "Cancel",
+  });
+
+  if (result.isConfirmed) {
+    try {
+      await deleteDoc(doc(db, "FavourateCharacters", documentId));
+      Swal.fire({
+        title: "Deleted!",
+        text: "The document has been deleted.",
+        icon: "success",
+      });
+    } catch (error) {
+      console.error("Error deleting document: ", error);
+      Swal.fire({
+        title: "Error",
+        text: "There was an error deleting the document.",
+        icon: "error",
+      });
+    }
+  }
+};
+
+      
+</script>
+
+</body>
+
+</html>
