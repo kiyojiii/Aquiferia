@@ -431,6 +431,7 @@
       .onSnapshot(
         (querySnapshot) => {
           let counter = 1; // initialize counter variable
+          let updateCount = 0; // initialize update counter 
           const table = $('#myTable').DataTable(); // cache DataTable instance
           table.clear(); // clear existing data in the table
           querySnapshot.forEach((doc) => {
@@ -438,9 +439,43 @@
             const dateTime = data["DateTime"];
             const date = new Date(dateTime.toDate()).toLocaleDateString();
             const time = new Date(dateTime.toDate()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-            // Edit Button
+            // Edit Button             
             const editButton = `<button type="button" class="btn btn-warning btn-sm edit" data-id="${doc.id}-edit" data-plantname="${data['Plant Name']}" data-moisturelevel="${data['Moisture Level'].replace('%', '')}" data-temperaturelevel="${data['Temperature Level'].replace('°C', '')}" data-humiditylevel="${data['Humidity Level'].replace('%', '')}" data-datetime="${dateTime.toDate()}">Edit</button>`;
+            // Delete Button
+            const deleteButton = `<button type="button" class="btn btn-danger btn-sm delete" data-id="${doc.id}-delete">Delete</button>`;
+
+            // Add event listener for update button
+            $(document).off('click', '#update-button').on('click', '#update-button', function () {
+              const docId = $(this).data('id');
+              const plantName = $('#plantNameInput').val();
+              const moistureLevel = $('#moistureLevelInput').val() + '%';
+              const temperatureLevel = $('#temperatureLevelInput').val() + '°C';
+              const humidityLevel = $('#humidityLevelInput').val() + '%';
+              const dateTime = new Date($('#DateTimeValue').val());
+              const newData = {
+                'Plant Name': plantName,
+                'Moisture Level': moistureLevel,
+                'Temperature Level': temperatureLevel,
+                'Humidity Level': humidityLevel,
+                'DateTime': firebase.firestore.Timestamp.fromDate(dateTime) // Fix: can't update time yet will fix soon
+              };
+              console.log('Updating docId:', docId); // Check if Document ID matches with docID
+              db2.collection("MoistureRecords").doc(docId).update(newData) // update only the specific document
+                .then(() => {
+                  console.log("update success");
+                  $('#edit-modal').modal('hide');
+                  updateSuccess();
+                  $(this).off('click'); // Remove event listener after update is completed
+                })
+                .catch((error) => {
+                  console.error("Error updating record: ", error);
+                  console.log("Error message: ", error.message);
+                  updateError(error.message);
+                });
+            });
+
+
+            // Add event listener for edit button
             $(document).on('click', '.edit', function () {
               if ($(this).data('id') === `${doc.id}-edit`) {
                 console.log(`Editing document with ID: ${doc.id}`); // add this line
@@ -463,42 +498,6 @@
               }
             });
 
-            // Add event listener for edit button
-            $(document).on('click', '#update-button', function () {
-              const docId = $(this).data('id');
-              const plantName = $('#plantNameInput').val();
-              const moistureLevel = $('#moistureLevelInput').val() + '%';
-              const temperatureLevel = $('#temperatureLevelInput').val() + '°C';
-              const humidityLevel = $('#humidityLevelInput').val() + '%';
-              const dateTime = new Date($('#DateTimeValue').val());
-              const newData = {
-                'Plant Name': plantName,
-                'Moisture Level': moistureLevel,
-                'Temperature Level': temperatureLevel,
-                'Humidity Level': humidityLevel,
-                'DateTime': firebase.firestore.Timestamp.fromDate(dateTime) // Fix: can't update time yet will fix soon
-              };
-              console.log('Updating docId:', docId); // Check if Document ID matches with docID
-              db2.collection("MoistureRecords").doc(docId).update(newData) // update only the specific document
-              .then(() => {
-                console.log("update success");
-                $('#edit-modal').modal('hide');
-                updateSuccess();
-                // exit the forEach loop by throwing an exception
-                throw new Error("Update successful - exit forEach");
-              })
-              .catch((error) => {
-                if (error.message === "Update successful - exit forEach") {
-                  return; // exit the forEach loop
-                }
-                console.error("Error updating record: ", error);
-                console.log("Error message: ", error.message);
-                updateError(error.message);
-              });
-            });
-
-            // Delete
-            const deleteButton = `<button type="button" class="btn btn-danger btn-sm delete" data-id="${doc.id}-delete">Delete</button>`;
             // Add event listener for delete button
             $(document).on('click', '.delete', function () {
               if ($(this).data('id') === `${doc.id}-delete`) {
@@ -534,7 +533,7 @@
                 });
               }
             });
-            
+
             // Displays the Data to the Tables
             table.row.add([
               counter++, // increment counter variable and include as first column
