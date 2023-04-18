@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE-edge">
   <meta name="viewport" content="width=device-width, intial-scale=1.0">
-  <title> Soil Moisture Records </title>
+  <title> Soil Metric Records </title>
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <script src="https://kit.fontawesome.com/334c45a40c.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -104,15 +104,15 @@
                         <a href="#pageSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
               <i class="material-icons">grid_on</i><span>tables</span></a>
                         <ul class="collapse list-unstyled menu" id="pageSubmenu6">
-                            <li class="active">
-                                <a href="crudpage.html">Moisture Records</a>
-                            </li>
-                            <li>
+                          <li class="active">
+                            <a href="crudpage.html"><i class="material-icons">folder_open</i>Soil Metric Records</a>
+                          </li>                                                                      
+                            <!-- <li>
                                 <a href="#">Page 2</a>
                             </li>
                             <li>
                                 <a href="#">Page 3</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>			
           
@@ -153,17 +153,17 @@
               <i class="material-icons">equalizer</i>
             
               
-              <span>chart</span></a>
+              <span>Visualization</span></a>
                         <ul class="collapse list-unstyled menu" id="pageSubmenu3">
-                            <li>
-                                <a href="chart.html">Chart Set 1</a>
-                            </li>
-                            <li>
+                          <li>
+                            <a href="chart.html"><i class="material-icons">equalizer</i>Bar & Line Graph</a>
+                          </li>                          
+                            <!-- <li>
                                 <a href="#">Page 2</a>
                             </li>
                             <li>
                                 <a href="#">Page 3</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
     
@@ -248,7 +248,7 @@
                             <span class="material-icons">arrow_back_ios</span>
                         </button>
               
-              <a class="navbar-brand" href="crudpage.html"> Soil Moisture Records </a>
+              <a class="navbar-brand" href="crudpage.html"> Soil Metric Records </a>
               
                         <button class="d-inline-block d-lg-none ml-auto more-button" type="button" data-toggle="collapse"
               data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -317,6 +317,7 @@
             <th>Temperature </th>
             <th>Humidity </th>
             <th>Date Time</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -343,17 +344,17 @@
           <div class="form-group col-md-7">
             <label for="Moisture" class="form-label" required>Moisture Level:</label>
             <div class="input-group">
-              <input type="text" class="form-control" id="Moisture" required>
+              <input type="number" class="form-control" id="Moisture" required>
               <span class="input-group-text">%</span>
             </div>
             <label for="Temperature" class="form-label" required>Temp Level:</label>
             <div class="input-group">
-              <input type="text" class="form-control" id="Temperature" required>
+              <input type="number" class="form-control" id="Temperature" required>
               <span class="input-group-text">°C</span>
             </div>
             <label for="Humidity" class="form-label" required>Humidity Level:</label>
             <div class="input-group">
-              <input type="text" class="form-control" id="Humidity" required>
+              <input type="number" class="form-control" id="Humidity" required>
               <span class="input-group-text">%</span>
             </div>
           </div>        
@@ -371,25 +372,46 @@
     </div>
   </div>
 </div>
-  <!-- Edit Modal -->
+<!-- Edit Modal -->
 <div id="edit-modal" class="modal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit User</h5>
+        <h5 class="modal-title">Edit Data</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="edit-close"></button>
       </div>
       <div class="modal-body">
         <form>
-          <div class="mb-3">
-            <label for="Fname-input" class="form-label">First Name:</label>
-            <input type="text" class="form-control" id="Fname-input">
+          <div class="form-group col-md-7">
+            <label for="PlantName" class="form-label" required>Plant Name:</label>
+            <input type="text" class="form-control" id="plantNameInput" required style="width: 120%;">
+          </div>          
+          <div class="form-group col-md-4">
+            <label for="Moisture" class="form-label" required>Moisture Level:</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="moistureLevelInput" required>
+              <span class="input-group-text">%</span>
             </div>
-            <div class="mb-3">
-            <label for="Lname-input" class="form-label">Last Name:</label>
-            <input type="text" class="form-control" id="Lname-input">
+            <label for="Temperature" class="form-label" required>Temp Level:</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="temperatureLevelInput" required>
+              <span class="input-group-text">°C</span>
             </div>
-          </form>
+            <label for="Humidity" class="form-label" required>Humidity Level:</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="humidityLevelInput" required>
+              <span class="input-group-text">%</span>
+            </div>
+          </div>        
+          <div class="form-group col-md-6">
+            <label for="DateTime" class="form-label">Edit Date and Time:</label>
+            <input type="datetime-local" class="form-control" id="DateTimeInput">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="DateTime" class="form-label">Current Date and Time</label>
+            <input type="text" class="form-control" id="DateTimeValue" readonly>
+          </div>
+        </form>
       </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="edit-close-button">Close</button>
@@ -510,35 +532,150 @@
     firebase.initializeApp(firebaseConfig);
     const db2 = firebase.firestore();
 
-// <-- Add Data to DataTables -->
+    // Display Success Alert for udate
+  //   function displaySuccessAlert() {
+  //   Swal.fire({
+  //     title: "Success",
+  //     text: "Record updated successfully",
+  //     icon: "success",
+  //   });
+  // }
 
 // Get the data from Firestore and add it to the DataTable
 db2.collection("MoistureRecords")
   .orderBy("DateTime", "desc")
-  .get()
-  .then((querySnapshot) => {
-    let counter = 1; // initialize counter variable
-    const table = $('#myTable').DataTable(); // cache DataTable instance
-    table.clear(); // clear existing data in the table
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      const dateTime = data["DateTime"];
-      const date = new Date(dateTime.toDate()).toLocaleDateString();
-      const time = new Date(dateTime.toDate()).toLocaleTimeString();
-      table.row.add([
-        counter++, // increment counter variable and include as first column
-        data["Plant Name"],
-        data["Moisture Level"],
-        data["Temperature Level"],
-        data["Humidity Level"],
-        `${date} ${time}`
-      ]);
+  .onSnapshot(
+    (querySnapshot) => {
+      let counter = 1; // initialize counter variable
+      const table = $('#myTable').DataTable(); // cache DataTable instance
+      table.clear(); // clear existing data in the table
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const dateTime = data["DateTime"];
+        const date = new Date(dateTime.toDate()).toLocaleDateString();
+        const time = new Date(dateTime.toDate()).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+  // Edit Button
+  const editButton = `<button type="button" class="btn btn-warning btn-sm edit" data-id="${doc.id}-edit" data-plantname="${data['Plant Name']}" data-moisturelevel="${data['Moisture Level'].replace('%', '')}" data-temperaturelevel="${data['Temperature Level'].replace('°C', '')}" data-humiditylevel="${data['Humidity Level'].replace('%', '')}" data-datetime="${dateTime.toDate()}">Edit</button>`;
+  $(document).on('click', '.edit', function() {
+  if ($(this).data('id') === `${doc.id}-edit`) {
+  console.log(`Editing document with ID: ${doc.id}`); // add this line
+  const docId = $(this).data('id').replace('-edit', '');
+  const plantName = $(this).data('plantname');
+  const moistureLevel = $(this).data('moisturelevel');
+  const temperatureLevel = $(this).data('temperaturelevel');
+  const humidityLevel = $(this).data('humiditylevel');
+  const dateTime = $(this).data('datetime');
+  // Pass data to edit form and display it
+  $('#plantNameInput').val(plantName);
+  $('#moistureLevelInput').val(moistureLevel);
+  $('#temperatureLevelInput').val(temperatureLevel);
+  $('#humidityLevelInput').val(humidityLevel);
+  const date = new Date(dateTime).toLocaleDateString();
+  const time = new Date(dateTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  $('#DateTimeValue').val(`${date} ${time}`);
+  $('#edit-modal').modal('show');
+  $('#update-button').data('id', docId);
+  }
+});
+
+// Add event listener for edit button
+$(document).on('click', '#update-button', function() {
+  const docId = $(this).data('id');
+  const plantName = $('#plantNameInput').val();
+  const moistureLevel = $('#moistureLevelInput').val() + '%';
+  const temperatureLevel = $('#temperatureLevelInput').val() + '°C';
+  const humidityLevel = $('#humidityLevelInput').val() + '%';
+  const dateTime = new Date($('#DateTimeValue').val());
+  const newData = {
+    'Plant Name': plantName,
+    'Moisture Level': moistureLevel,
+    'Temperature Level': temperatureLevel,
+    'Humidity Level': humidityLevel,
+    'DateTime': firebase.firestore.Timestamp.fromDate(dateTime)
+  };
+  console.log('Updating docId:', docId); // Check if Document ID matches with docID
+  db2.collection("MoistureRecords").doc(docId).update(newData) // update only the specific document
+    .then(() => {
+      $('#edit-modal').modal('hide');
+      updateSuccess();
+    })
+    .catch((error) => {
+      console.error("Error updating record: ", error);
+      updateError(error.message);
     });
-    table.draw(); // refresh the table with new data
-  })
-  .catch((error) => {
-    console.log(`Error getting documents: ${error}`);
+});
+
+function updateSuccess() {
+  Swal.fire({
+    title: "Success",
+    text: "Record updated successfully",
+    icon: "success",
   });
+}
+
+function updateError(errorMessage) {
+  Swal.fire({
+    title: "Error",
+    text: `There was an error updating the record: ${errorMessage}`,
+    icon: "error",
+  });
+}
+
+
+        // Delete
+        const deleteButton = `<button type="button" class="btn btn-danger btn-sm delete" data-id="${doc.id}-delete">Delete</button>`;
+        table.row.add([
+          counter++, // increment counter variable and include as first column
+          data["Plant Name"],
+          data["Moisture Level"],
+          data["Temperature Level"],
+          data["Humidity Level"],
+          `${date} ${time}`,
+          `${editButton} ${deleteButton}`
+        ]);
+        // Add event listener for delete button
+        $(document).on('click', '.delete', function() {
+          if ($(this).data('id') === `${doc.id}-delete`) {
+            Swal.fire({
+              title: "Are you sure?",
+              text: `Do you really want to delete the record for ${data["Plant Name"]}?`,
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#d33',
+              cancelButtonColor: '#3085d6',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                db2.collection("MoistureRecords").doc(doc.id).delete()
+                  .then(() => {
+                    Swal.fire({
+                      title: "Deleted!",
+                      text: `The record for ${data["Plant Name"]} has been deleted`,
+                      icon: "success",
+                    });
+                    table.row($(this).closest('tr')).remove().draw(); // remove row from DataTable
+                  })
+                  .catch((error) => {
+                    console.error("Error removing record: ", error);
+                    Swal.fire({
+                      title: "Error",
+                      text: "There was an error removing the record.",
+                      icon: "error",
+                    });
+                  });
+              }
+            });
+          }
+        });
+      });
+      table.draw(); // refresh the table with new data
+    },
+    (error) => {
+      console.log(`Error getting documents: ${error}`);
+    }
+  );
+
 
 
 // <----- ADD MODAL -----> 
@@ -760,39 +897,6 @@ addModal.addEventListener("hidden.bs.modal", () => {
       
 // });
 
-
-// // <----- DELETE FUNCTION ----->
-
-// // Function to delete a document from Firestore
-// const deleteDocument = async (documentId) => {
-//   const result = await Swal.fire({
-//     title: "Are you sure you want to delete this document?",
-//     text: "This action cannot be undone.",
-//     icon: "warning",
-//     showCancelButton: true,
-//     confirmButtonColor: "#dc3545",
-//     confirmButtonText: "Yes, delete it",
-//     cancelButtonText: "Cancel",
-//   });
-
-//   if (result.isConfirmed) {
-//     try {
-//       await deleteDoc(doc(db, "FavourateCharacters", documentId));
-//       Swal.fire({
-//         title: "Deleted!",
-//         text: "The document has been deleted.",
-//         icon: "success",
-//       });
-//     } catch (error) {
-//       console.error("Error deleting document: ", error);
-//       Swal.fire({
-//         title: "Error",
-//         text: "There was an error deleting the document.",
-//         icon: "error",
-//       });
-//     }
-//   }
-// };
 
 //----- Logout code start	  
 document.getElementById("logout").addEventListener("click", function() {

@@ -76,52 +76,36 @@
                         <a href="#pageSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
               <i class="material-icons">grid_on</i><span>tables</span></a>
                         <ul class="collapse list-unstyled menu" id="pageSubmenu6">
-                            <li class="">
-                                <a href="crudpage.html">Moisture Records</a>
-                            </li>
-                            <li>
+                          <li class="">
+                            <a href="crudpage.html"><i class="material-icons">folder</i>Soil Metric Records</a>
+                          </li>                          
+                            <!-- <li>
                                 <a href="#">Page 2</a>
                             </li>
                             <li>
                                 <a href="#">Page 3</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                       
             </div>
-                    
-                    <li class="dropdown">
-                        <a href="#pageSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-              <i class="material-icons">grid_on</i><span>tables</span></a>
-                        <ul class="collapse list-unstyled menu" id="pageSubmenu6">
-                            <li class="">
-                                <a href="crudpage.html">Moisture Records</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
-                    </li>			
-            
+                  
              <li class="dropdown active">
                         <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
               <i class="material-icons">equalizer</i>
             
               
-              <span>chart</span></a>
+              <span>Visualization</span></a>
                         <ul class="collapse list-unstyled menu" id="pageSubmenu3">
-                            <li class="active">
-                                <a href="chart.html">Chart Set 1</a>
-                            </li>
-                            <li>
+                          <li class="active">
+                            <a href="chart.html"><i class="material-icons">equalizer</i>Bar & Line Graph</a>
+                          </li>                          
+                            <!-- <li>
                                 <a href="#">Page 2</a>
                             </li>
                             <li>
                                 <a href="#">Page 3</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
 
@@ -175,23 +159,29 @@
           
 <div class="main-content">
 
-    <div class="container my-5">
-        <div class="row">
-          <div class="col-md-6 justify-content-center">
-            <h2 class="text-center">Bar Chart</h2>
-            <canvas id="myChart1"></canvas>
-            <br>
-            <canvas id="myChart2"></canvas>
-          </div>
-          <div class="col-md-6">
-            <h2 class="text-center">Line Chart</h2>
-            <canvas id="lineChart1"></canvas>
-            <br>
-            <canvas id="lineChart2"></canvas>
-          </div>
-        </div>
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-md-6 justify-content-center">
+        <h2 class="text-center">Bar Chart</h2>
+        <canvas id="myChart1"></canvas>
+        <br>
+        <canvas id="myChart2"></canvas>
       </div>
-
+      <div class="col-md-6">
+        <h2 class="text-center">Line Chart</h2>
+        <canvas id="lineChart1"></canvas>
+        <br>
+        <canvas id="lineChart2"></canvas>
+      </div>
+      <!-- <div class="container my-5">
+      <div class="col-md-6">
+        <h2 class="text-center">Pie Chart</h2>
+        <canvas id="pieChart1"></canvas>
+      </div>
+      </div> -->
+    </div>
+  </div>
+  
     
     <!-- Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
@@ -364,7 +354,7 @@ db2.collection('MoistureRecords')
         },
         title: {
         display: true,
-        text: 'Moisture Level Chart',
+        text: 'Moisture Level',
         fontSize: 18,
         fontStyle: 'bold',
         fontColor: '#333',
@@ -382,7 +372,7 @@ db2.collection('MoistureRecords')
         datasets: [{
         label: 'Humidity Level',
         data: humidityData,
-        backgroundColor: '#4e73df',
+        backgroundColor: '#1cc88a',
         barPercentage: 0.5,
         borderWidth: 1,
         borderColor: '#777',
@@ -429,7 +419,7 @@ db2.collection('MoistureRecords')
         },
         title: {
         display: true,
-        text: 'Temperature and Humidity Level Chart',
+        text: 'Temperature and Humidity Level',
         fontSize: 18,
         fontStyle: 'bold',
         fontColor: '#333',
@@ -498,7 +488,7 @@ db2.collection('MoistureRecords')
         },
         title: {
         display: true,
-        text: 'Moisture Level Chart',
+        text: 'Moisture Level',
         fontSize: 18,
         fontStyle: 'bold',
         fontColor: '#333',
@@ -604,7 +594,7 @@ db2.collection('MoistureRecords')
         },
         title: {
           display: true,
-          text: 'Plant Metrics Chart',
+          text: 'Soil Metrics',
           fontSize: 18,
           fontStyle: 'bold',
           fontColor: '#333',
@@ -612,7 +602,8 @@ db2.collection('MoistureRecords')
         }
       },
     });
-  });
+});
+
 
 //----- Logout code start	  
 document.getElementById("logout").addEventListener("click", function() {
