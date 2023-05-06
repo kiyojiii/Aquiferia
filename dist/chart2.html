@@ -107,9 +107,9 @@
             <li class="active">
               <a href="chart2.html"><i class="material-icons">equalizer</i>Bar & Line Graph</a>
             </li>
-            <li>
+            <!-- <li>
               <a href="#">Page 3</a>
-            </li>
+            </li> -->
           </ul>
         </li>
 
@@ -134,7 +134,7 @@
               <span class="material-icons">arrow_back_ios</span>
             </button>
 
-            <a class="navbar-brand" href="crudpage.html"> Chart Set 1 </a>
+            <a class="navbar-brand" href="crudpage.html"> Bar & Line Graph </a>
 
             <button class="d-inline-block d-lg-none ml-auto more-button" type="button" data-toggle="collapse"
               data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -294,217 +294,208 @@
     firebase.initializeApp(firebaseConfig);
     const db2 = firebase.firestore();
 
-// Retrieve data from Firestore to Bar Graph
-db2.collection('MoistureRecords')
-  .orderBy('DateTime', 'desc')
-  .limit(6)
-  .onSnapshot((querySnapshot) => {
-    const labels = [];
-    const dates = [];
-    const moistureData = [];
-    const temperatureData = [];
-    const humidityData = [];
-    querySnapshot.forEach((doc) => {
-      const plantData = doc.data();
-      const date = moment(plantData['DateTime'].toDate()).format('MM/DD/YYYY hh:mm A');
-      dates.push(date);
-      moistureData.push(parseFloat(plantData['Moisture Level']));
-    });
-    labels.push(...dates);
+    // Retrieve data from Firestore to Bar Graph
+    db2.collection('MoistureRecords')
+      .orderBy('DateTime', 'desc')
+      .limit(6)
+      .onSnapshot((querySnapshot) => {
+        const labels = [];
+        const dates = [];
+        const moistureData = [];
+        const temperatureData = [];
+        const humidityData = [];
+        querySnapshot.forEach((doc) => {
+          const plantData = doc.data();
+          const date = moment(plantData['DateTime'].toDate()).format('MM/DD/YYYY hh:mm A');
+          dates.push(date);
+          moistureData.push(parseFloat(plantData['Moisture Level']));
+        });
+        labels.push(...dates);
 
-    // Bar Graph Moisture Level
-    const ctx1 = document.getElementById('myChart1').getContext('2d');
-    const chart1 = new Chart(ctx1, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Moisture Level',
-          data: moistureData,
-          backgroundColor: [
-            '#4e73df',
-            '#1cc88a',
-            '#36b9cc',
-            '#f6c23e',
-            '#e74a3b',
-            '#a4a4a4',
-            '#95a5a6',
-            '#34495e',
-          ],
-          barPercentage: 0.5,
-          borderWidth: 1,
-          borderColor: '#777',
-        }],
-      },
-      options: {
-        scales: {
-          xAxes: [{
-            ticks: {
-              autoSkip: false,
-              maxRotation: 0,
-              callback: function (value, index, values) {
-                return dates[index];
-              }
-            },
-            scaleLabel: {
-              display: true,
-              labelString: 'Zsa Bhu',
-              fontSize: 16,
-              fontColor: '#333',
-              padding: 10,
-            }
-          }],
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              max: 100,
-              stepSize: 10,
-              callback: function (value, index, values) {
-                return value + '%';
-              },
-            },
-          }],
-        },
-        legend: {
-          display: false,
-        },
-        title: {
-          display: true,
-          text: 'Moisture Level',
-          fontSize: 18,
-          fontStyle: 'bold',
-          fontColor: '#333',
-          padding: 20,
-        },
-        plugins: {
-          datalabels: {
-            anchor: 'end',
-            align: 'top',
-            formatter: function (value, context) {
-              return value + '%';
-            },
-            color: '#fff',
-            font: {
-              size: '14',
-            }
-          }
-        }
-      },
-    });
-  });
-
-
-// Retrieve data from Firestore to Line Graph
-db2.collection('MoistureRecords')
-  .orderBy('DateTime', 'desc')
-  .limit(6)
-  .onSnapshot((querySnapshot) => {
-    const labels = [];
-    const dates = [];
-    const moistureData = [];
-    const temperatureData = [];
-    const humidityData = [];
-    const pointColors = []; // array to hold point colors
-    querySnapshot.forEach((doc) => {
-      const plantData = doc.data();
-      const date = moment(plantData['DateTime'].toDate()).format('MM/DD/YYYY hh:mm A');
-      labels.push(date);
-      moistureData.push(parseFloat(plantData['Moisture Level']));
-      pointColors.push(`#${Math.floor(Math.random() * 16777215).toString(16)}`); // assign random color to each point
-    });
-
-    const ctx = document.getElementById('lineChart1').getContext('2d');
-    const myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Moisture Level',
-            data: moistureData,
-            fill: false,
-            borderColor: '#4e73df',
-            borderWidth: 4,
-            pointBackgroundColor: '#4e73df',
-            pointRadius: 6,
-            pointHoverRadius: 8,
-            tension: 0.3
+        // Bar Graph Moisture Level
+        const ctx1 = document.getElementById('myChart1').getContext('2d');
+        const chart1 = new Chart(ctx1, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Moisture Level',
+              data: moistureData,
+              backgroundColor: [
+                '#4e73df',
+                '#1cc88a',
+                '#36b9cc',
+                '#f6c23e',
+                '#e74a3b',
+                '#a4a4a4',
+                '#95a5a6',
+                '#34495e',
+              ],
+              barPercentage: 0.5,
+              borderWidth: 1,
+              borderColor: '#777',
+            }],
           },
-        ],
-      },
-      options: {
-        scales: {
-          xAxes: [{
-            ticks: {
-              autoSkip: false,
-              maxRotation: 0,
-              callback: function(value, index, values) {
-                return labels[index];
+          options: {
+            scales: {
+              xAxes: [{
+                ticks: {
+                  autoSkip: false,
+                  maxRotation: 0,
+                  callback: function (value, index, values) {
+                    return dates[index];
+                  }
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Zsa Bhu',
+                  fontSize: 16,
+                  fontColor: '#333',
+                  padding: 10,
+                }
+              }],
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  max: 100,
+                  stepSize: 10,
+                  callback: function (value, index, values) {
+                    return value + '%';
+                  },
+                },
+              }],
+            },
+            legend: {
+              display: false,
+            },
+            title: {
+              display: true,
+              text: 'Moisture Level',
+              fontSize: 18,
+              fontStyle: 'bold',
+              fontColor: '#333',
+              padding: 20,
+            },
+            plugins: {
+              datalabels: {
+                anchor: 'end',
+                align: 'top',
+                formatter: function (value, context) {
+                  return value + '%';
+                },
+                color: '#fff',
+                font: {
+                  size: '14',
+                }
               }
-            },
-            scaleLabel: {
-              display: true,
-              labelString: 'Time',
-              fontSize: 16,
-            },
-          }],
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              max: 100,
-              stepSize: 10,
-              callback: function (value, index, values) {
-                return value + '%';
+            }
+          },
+        });
+      });
+
+
+    // Retrieve data from Firestore to Line Graph
+    db2.collection('MoistureRecords')
+      .orderBy('DateTime', 'desc')
+      .limit(6)
+      .onSnapshot((querySnapshot) => {
+        const labels = [];
+        const dates = [];
+        const moistureData = [];
+        const temperatureData = [];
+        const humidityData = [];
+        const pointColors = []; // array to hold point colors
+        querySnapshot.forEach((doc) => {
+          const plantData = doc.data();
+          const date = moment(plantData['DateTime'].toDate()).format('MM/DD/YYYY hh:mm A');
+          labels.push(date);
+          moistureData.push(parseFloat(plantData['Moisture Level']));
+          pointColors.push(`#${Math.floor(Math.random() * 16777215).toString(16)}`); // assign random color to each point
+        });
+
+        const ctx = document.getElementById('lineChart1').getContext('2d');
+        const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'Moisture Level',
+                data: moistureData,
+                fill: false,
+                borderColor: '#4e73df',
+                borderWidth: 4,
+                pointBackgroundColor: '#4e73df',
+                pointRadius: 6,
+                pointHoverRadius: 8,
+                tension: 0.3
               },
+            ],
+          },
+          options: {
+            scales: {
+              xAxes: [{
+                ticks: {
+                  autoSkip: false,
+                  maxRotation: 0,
+                  callback: function (value, index, values) {
+                    return labels[index];
+                  }
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Time',
+                  fontSize: 16,
+                },
+              }],
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  max: 100,
+                  stepSize: 10,
+                  callback: function (value, index, values) {
+                    return value + '%';
+                  },
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Moisture Level',
+                  fontSize: 16,
+                },
+              }],
             },
-            scaleLabel: {
+            legend: {
               display: true,
-              labelString: 'Moisture Level',
-              fontSize: 16,
+              position: 'bottom'
             },
-          }],
-        },
-        legend: {
-          display: true,
-          position: 'bottom'
-        },
-        title: {
-          display: true,
-          text: 'Moisture Level For Zsa Bhu',
-          fontSize: 18,
-          fontStyle: 'bold',
-          fontColor: '#333',
-          padding: 20,
-        }
-      },
-    });
-  });
+            title: {
+              display: true,
+              text: 'Moisture Level For Zsa Bhu',
+              fontSize: 18,
+              fontStyle: 'bold',
+              fontColor: '#333',
+              padding: 20,
+            }
+          },
+        });
+      });
 
 
 
 
     //----- Logout code start	  
     document.getElementById("logout").addEventListener("click", function () {
-      signOut(auth).then(() => {
-        // Sign-out successful.
-        console.log('Sign-out successful.');
-        (Swal.fire({
-          icon: 'success',
-          title: 'Logged Out Successfully',
-        }));
-        setTimeout(function () {
-          window.location.href = "index.html"; //will redirect to your blog page (an ex: blog.html)
-        }, 2000);
-      }).catch((error) => {
-        // An error happened.
-        console.log('An error happened.');
-        (Swal.fire({
-          icon: 'error',
-          title: 'An Error Has Occured',
-          text: '' + error,
-        }));;
+      console.log('Logging out...');
+      Swal.fire({
+        icon: 'success',
+        title: 'Logged Out Successfully',
       });
+      setTimeout(function () {
+        window.location.href = "index.html";
+        window.close(); // Closes the current tab
+      }, 2000);
     });
+
 
   </script>
 

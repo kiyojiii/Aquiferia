@@ -136,7 +136,7 @@
               <span class="material-icons">arrow_back_ios</span>
             </button>
 
-            <a class="navbar-brand" href="crudpage.html"> Chart Set 1 </a>
+            <a class="navbar-brand" href="crudpage.html"> Soil Metric Analytics </a>
 
             <button class="d-inline-block d-lg-none ml-auto more-button" type="button" data-toggle="collapse"
               data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -616,26 +616,17 @@
 
     //----- Logout code start	  
     document.getElementById("logout").addEventListener("click", function () {
-      signOut(auth).then(() => {
-        // Sign-out successful.
-        console.log('Sign-out successful.');
-        (Swal.fire({
-          icon: 'success',
-          title: 'Logged Out Successfully',
-        }));
-        setTimeout(function () {
-          window.location.href = "index.html"; //will redirect to your blog page (an ex: blog.html)
-        }, 2000);
-      }).catch((error) => {
-        // An error happened.
-        console.log('An error happened.');
-        (Swal.fire({
-          icon: 'error',
-          title: 'An Error Has Occured',
-          text: '' + error,
-        }));;
+      console.log('Logging out...');
+      Swal.fire({
+        icon: 'success',
+        title: 'Logged Out Successfully',
       });
+      setTimeout(function () {
+        window.location.href = "index.html";
+        window.close(); // Closes the current tab
+      }, 2000);
     });
+
 
   </script>
 

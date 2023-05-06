@@ -122,7 +122,7 @@
       </li>
 
       <li class="">
-        <a href="#" id="logout"><i class="material-icons">logout</i><span>Logout</span></a>
+        <a href="#" id="logout2"><i class="material-icons">logout</i><span>Logout</span></a>
       </li>
 
 
@@ -636,26 +636,16 @@
     });
 
     //----- Logout code start	  
-    document.getElementById("logout").addEventListener("click", function () {
-      signOut(auth).then(() => {
-        // Sign-out successful.
-        console.log('Sign-out successful.');
-        (Swal.fire({
-          icon: 'success',
-          title: 'Logged Out Successfully',
-        }));
-        setTimeout(function () {
-          window.location.href = "index.html"; //will redirect to your blog page (an ex: blog.html)
-        }, 2000);
-      }).catch((error) => {
-        // An error happened.
-        console.log('An error happened.');
-        (Swal.fire({
-          icon: 'error',
-          title: 'An Error Has Occured',
-          text: '' + error,
-        }));;
+    document.getElementById("logout2").addEventListener("click", function () {
+      console.log('Logging out...');
+      Swal.fire({
+        icon: 'success',
+        title: 'Logged Out Successfully',
       });
+      setTimeout(function () {
+        window.location.href = "index.html";
+        window.close(); // Closes the current tab
+      }, 2000);
     });
 
   </script>
