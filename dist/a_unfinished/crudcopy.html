@@ -108,22 +108,20 @@
             <span>Visualization</span></a>
           <ul class="collapse list-unstyled menu" id="pageSubmenu3">
             <li>
-              <a href="chart.html"><i class="material-icons">equalizer</i>Soil Metric Analytics</a>
+              <a href="chart.html"><i class="material-icons">equalizer</i>Bar & Line Graph</a>
             </li>
-            <li>
-            <li>
-              <a href="chart2.html"><i class="material-icons">equalizer</i>Bar & Line Graph</a>
-            </li>
-        </li>
-        <!-- <li>
+            <!-- <li>
+                                <a href="#">Page 2</a>
+                            </li>
+                            <li>
                                 <a href="#">Page 3</a>
                             </li> -->
-      </ul>
-      </li>
+          </ul>
+        </li>
 
-      <li class="">
-        <a href="#" id="logout"><i class="material-icons">logout</i><span>Logout</span></a>
-      </li>
+        <li class="">
+          <a href="#" id="logout"><i class="material-icons">logout</i><span>Logout</span></a>
+        </li>
 
 
       </ul>
@@ -184,13 +182,10 @@
         <table id="myTable" class="display">
           <thead>
             <tr>
-              <th>No. </th>
+              <th>Humidity Level</th>
+              <th>Temperature Level</th>
+              <th>Moisture Level</th>
               <th>Plant Name</th>
-              <th>Moisture </th>
-              <th>Temperature </th>
-              <th>Humidity </th>
-              <th>Date Time</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -277,9 +272,13 @@
                     <span class="input-group-text">%</span>
                   </div>
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
+                  <label for="DateTime" class="form-label">Edit Date and Time:</label>
+                  <input type="datetime-local" class="form-control" id="DateTimeInput">
+                </div>
+                <div class="form-group col-md-6">
                   <label for="DateTime" class="form-label">Current Date and Time</label>
-                  <input type="text" class="form-control" id="CurrentDateTime" readonly>
+                  <input type="text" class="form-control" id="DateTimeValue" readonly>
                 </div>
               </form>
             </div>
@@ -407,6 +406,7 @@
     firebase.initializeApp(firebaseConfig);
     const db2 = firebase.firestore();  // Function for Database Firestore 
 
+
     function updateSuccess() {
       Swal.fire({
         title: "Success",
@@ -423,134 +423,26 @@
       });
     }
 
-    // Get the data from Firestore and add it to the DataTable
+
+
+    // Get Firestore data
     db2.collection("MoistureRecords")
-      .orderBy("DateTime", "desc")
-      .onSnapshot(
-        (querySnapshot) => {
-          let counter = 1; // initialize counter variable
-          let updateCount = 0; // initialize update counter 
-          const table = $('#myTable').DataTable(); // cache DataTable instance
-          table.clear(); // clear existing data in the table
-          querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const dateTime = data["DateTime"];
-            const date = new Date(dateTime.toDate()).toLocaleDateString();
-            const time = new Date(dateTime.toDate()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            // Edit Button             
-            const editButton = `<button type="button" class="btn btn-warning btn-sm edit" data-id="${doc.id}-edit" data-plantname="${data['Plant Name']}" data-moisturelevel="${data['Moisture Level'].replace('%', '')}" data-temperaturelevel="${data['Temperature Level'].replace('°C', '')}" data-humiditylevel="${data['Humidity Level'].replace('%', '')}" data-datetime="${dateTime.toDate()}">Edit</button>`;
-            // Delete Button
-            const deleteButton = `<button type="button" class="btn btn-danger btn-sm delete" data-id="${doc.id}-delete">Delete</button>`;
-
-            // Add event listener for update button
-            $(document).off('click', '#update-button').on('click', '#update-button', function () {
-              const docId = $(this).data('id');
-              const plantName = $('#plantNameInput').val();
-              const moistureLevel = $('#moistureLevelInput').val() + '%';
-              const temperatureLevel = $('#temperatureLevelInput').val() + '°C';
-              const humidityLevel = $('#humidityLevelInput').val() + '%';
-              // const dateTime = ($('#CurrentDateTime').val());
-              const newData = {
-                'Plant Name': plantName,
-                'Moisture Level': moistureLevel,
-                'Temperature Level': temperatureLevel,
-                'Humidity Level': humidityLevel,
-                // 'DateTime': dateTime // Fix: can't update time yet will fix soon
-              };
-              console.log('Updating docId:', docId); // Check if Document ID matches with docID
-              db2.collection("MoistureRecords").doc(docId).update(newData) // update only the specific document
-                .then(() => {
-                  console.log("update success");
-                  $('#edit-modal').modal('hide');
-                  updateSuccess();
-                  $(this).off('click'); // Remove event listener after update is completed
-                })
-                .catch((error) => {
-                  console.error("Error updating record: ", error);
-                  console.log("Error message: ", error.message);
-                  updateError(error.message);
-                });
-            });
-
-
-            // Add event listener for edit button
-            $(document).on('click', '.edit', function () {
-              if ($(this).data('id') === `${doc.id}-edit`) {
-                console.log(`Editing document with ID: ${doc.id}`); // add this line
-                const docId = $(this).data('id').replace('-edit', '');
-                const plantName = $(this).data('plantname');
-                const moistureLevel = $(this).data('moisturelevel');
-                const temperatureLevel = $(this).data('temperaturelevel');
-                const humidityLevel = $(this).data('humiditylevel');
-                const dateTime = $(this).data('datetime');
-                // Pass data to edit form and display it
-                $('#plantNameInput').val(plantName);
-                $('#moistureLevelInput').val(moistureLevel);
-                $('#temperatureLevelInput').val(temperatureLevel);
-                $('#humidityLevelInput').val(humidityLevel);
-                const date = new Date(dateTime).toLocaleDateString();
-                const time = new Date(dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                $('#CurrentDateTime').val(`${date} ${time}`);
-                $('#edit-modal').modal('show');
-                $('#update-button').data('id', docId);
-              }
-            });
-
-            // Add event listener for delete button
-            $(document).on('click', '.delete', function () {
-              if ($(this).data('id') === `${doc.id}-delete`) {
-                Swal.fire({
-                  title: "Are you sure?",
-                  text: `Do you really want to delete the record for ${data["Plant Name"]}?`,
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#d33',
-                  cancelButtonColor: '#3085d6',
-                  confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    db2.collection("MoistureRecords").doc(doc.id).delete()
-                      .then(() => {
-                        console.log("Successful Delete")
-                        Swal.fire({
-                          title: "Deleted!",
-                          text: `The record for ${data["Plant Name"]} has been deleted`,
-                          icon: "success",
-                        });
-                        table.row($(this).closest('tr')).remove().draw(); // remove row from DataTable
-                      })
-                      .catch((error) => {
-                        console.error("Error removing record: ", error);
-                        Swal.fire({
-                          title: "Error",
-                          text: "There was an error removing the record.",
-                          icon: "error",
-                        });
-                      });
-                  }
-                });
-              }
-            });
-
-            // Displays the Data to the Tables
-            table.row.add([
-              counter++, // increment counter variable and include as first column
-              data["Plant Name"],
-              data["Moisture Level"],
-              data["Temperature Level"],
-              data["Humidity Level"],
-              `${date} ${time}`,
-              `${editButton} ${deleteButton}`
-            ]);
-
-          });
-          table.draw(); // refresh the table with new data
-        },
-        (error) => {
-          console.log(`Error getting documents: ${error}`);
-        }
-      );
-
+      .get()
+      .then((querySnapshot) => {
+        const dataTable = $('#myTable').DataTable();
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          dataTable.row.add([
+            data['Humidity Level'],
+            data['Temperature Level'],
+            data['Moisture Level'],
+            data['Plant Name'],
+          ]).draw(false);
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting Firestore data:", error);
+      });
 
 
     // <----- ADD MODAL -----> 
@@ -661,29 +553,11 @@
   </script>
 
   <!-- Data Table Show Entries -->
-  <script>
+  <!-- <script>
     $('#myTable').dataTable({
-      "lengthMenu": [[6, 15, 50, -1], [6, 15, 50, "All"]],
-      "columnDefs": [
-        { "width": "5%", "targets": 0 }, // No
-        { "width": "20%", "targets": 1 }, // Plant Name
-        { "width": "14%", "targets": 2 }, // Moisture Lvl
-        { "width": "14%", "targets": 3 }, // Temp Lvl
-        { "width": "14%", "targets": 4 }, // Humid Lvl
-        { "width": "20%", "targets": 5 }, // Date
-        { "width": "18%", "targets": 6 }, // Action
-      ],
-      "columns": [
-        { "className": "text-center" }, // No
-        { "className": "text-center" }, // Plant Name
-        { "className": "text-center" }, // Moisture Lvl
-        { "className": "text-center" }, // Temp Lvl
-        { "className": "text-center" }, // Humid Lvl
-        { "className": "text-center" }, // Date
-        { "className": "text-center" }, // Action
-      ]
+      "lengthMenu": [[6, 15, 50, -1], [6, 15, 50, "All"]]
     });
-  </script>
+  </script> -->
 
 
   <!-- Optional JavaScript -->
