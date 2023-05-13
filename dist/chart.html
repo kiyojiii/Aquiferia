@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE-edge">
   <meta name="viewport" content="width=device-width, intial-scale=1.0">
-  <title> Soil Moisture Records </title>
+  <title> Soil Metric Analytics </title>
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <script src="https://kit.fontawesome.com/334c45a40c.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -73,7 +73,10 @@
         <div class="small-screen navbar-display">
 
           <li class="d-lg-none d-md-block d-xl-none d-sm-block">
-            <a href="#"><i class="material-icons">person</i><span>user</span></a>
+            <a href="#" id="account4"><i class="material-icons" id="account4">person</i><span>user</span></a>
+          </li>
+          <li class="d-lg-none d-md-block d-xl-none d-sm-block">
+            <a href="#" id="account3"><i class="material-icons">settings</i><span>setting</span></a>
           </li>
 
           <li class="dropdown">
@@ -83,12 +86,6 @@
               <li class="">
                 <a href="crudpage.html"><i class="material-icons">folder</i>Soil Metric Records</a>
               </li>
-              <!-- <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li> -->
             </ul>
           </li>
 
@@ -136,7 +133,7 @@
               <span class="material-icons">arrow_back_ios</span>
             </button>
 
-            <a class="navbar-brand" href="crudpage.html"> Soil Metric Analytics </a>
+            <a class="navbar-brand" href="chart.html"> Soil Metric Analytics </a>
 
             <button class="d-inline-block d-lg-none ml-auto more-button" type="button" data-toggle="collapse"
               data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -149,14 +146,20 @@
               <ul class="nav navbar-nav ml-auto">
 
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="#" id="account2">
                     <span class="material-icons">person</span>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="material-icons">settings</span>
+                <li class="">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">settings</i><span></span>
                   </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#" id="account">Account</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" id="logout2">Logout</a>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -207,23 +210,23 @@
               <nav class="d-flex">
                 <ul class="m-0 p-0">
                   <li>
-                    <a href="#">
+                    <a href="dashboard.html">
                       Home
                     </a>
                   </li>
                   <li>
-                    <a href="#">
-                      Company
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
+                    <a href="https://itdproject-12c91.web.app/pportfolio.html">
                       Portfolio
                     </a>
                   </li>
                   <li>
-                    <a href="#">
-                      Blog
+                    <a href="https://itdproject-12c91.web.app/">
+                      Other Website
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.facebook.com/Kiyojiii">
+                      Facebook
                     </a>
                   </li>
                 </ul>
@@ -627,6 +630,24 @@
       }, 2000);
     });
 
+    // Array of element IDs
+    const elementIds = ["account", "account2", "account3", "account4"];
+
+    // Function to handle the click event
+    function handleClick() {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Feature Not Yet Implemented',
+      });
+    }
+
+    // Attach event listener to each element
+    elementIds.forEach((elementId) => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.addEventListener("click", handleClick);
+      }
+    });
 
   </script>
 
